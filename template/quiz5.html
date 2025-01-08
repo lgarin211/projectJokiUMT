@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilmu Pendidikan</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/quizes.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,700;0,800;0,900;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<style>
+
+
+
+</style>
+<body>
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+        <div class="wrapper mt-2">
+            <div class="quiz-title mt-2 d-flex flex-row w-100 justify-content-between">
+                <h4>Quiz 5: Pendidikan Abad 21</h4>
+                <h4 class="Waktu"></h4>
+            </div>
+            <div id="progress-bar-container" class="mt-2">
+                <div class="progress-bar-title">
+                    <div class="progress-bar-title-text">Kemajuan Quiz: </div>
+                    <div class="progress-bar-title-text">Pertanyaan <span class="current-question">1</span> dari <span id="totalQuestion"></span></div>
+                </div>
+                <div id="progress-bar" class="progress mt-1">
+                    <div class="progress-bar my-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <div class="quiz-question-number mt-3">Pertanyaan <span class="current-question">1</span></div>
+                <div class="question-text-wrapper">
+                    <h5 id="question-text"></h5>
+                </div>
+            </div>
+            <div class="options d-grid">
+                <button class="btn btn-outline-secondary option" value=0 id="option0"></button>
+                <button class="btn btn-outline-secondary option" value=1 id="option1"></button>
+                <button class="btn btn-outline-secondary option" value=2 id="option2"></button>
+                <button class="btn btn-outline-secondary option" value=3 id="option3"></button>
+            </div>
+            <div class="buttons-wrapper mt-1">
+                <button id="prev" class="btn btn-secondary">Sebelumnya</button>
+                <button id="next" class="btn btn-info">Selanjutnya</button>
+                <button id="finish" class="btn btn-warning">Selesai</button>
+            </div>
+        </div>
+        <div class="wrapper-2 mt-2">
+            <h3>🎉 Selamat telah menyelesaikan kuis.</h3>
+            <div class="message">
+                Kamu telah menyelesaikan kuis, tekan tombol selesai untuk kembali ke halaman utama.
+            </div>
+
+            <div class="rating mt-4"></div>
+            <div class="mt-2">
+                Skor kamu adalah <span id="infoSkor"></span>/100
+            </div>
+            <a href="./home.html" class="btn btn-success mt-2">Selesai</a>
+        </div>
+    </div>
+</body>
+<script>
+var questionData = {
+    "questions": {
+        "0": "Apa dimaksud dengan pembelajaran abad 21..",
+        "1": "Mengapa pembelajaran abad 21 dikatakan sebagai suatu peralihan pembelajaran...",
+        "2": "Pendidikan Abad 21 menjadi semakin penting untuk menjamin peserta didik memiliki keterampilan?",
+        "3": "Apa saja aspek-aspek dalam pendekatan saintifik...",
+        "4": "Apa yang dimaksud dengan kemampuan Associating...",
+        "5": "Bagaimana proses pembelajaran seorang guru pada aspek kemampuan observing...",
+        "6": "Apa pengertian penilaian autentik menurut American Library Association...",
+        "7": "Istilah 'autentik' merupakan sinonim dari...",
+        "8": "Ada berapa teknik dalam penilaian autentik..",
+        "9": "Apa yang dimaksud dengan Life and Career Skills?",
+        "10": "Dibawah ini yang bukan keterampilan abad 21 adalah...",
+        "11": "Learning to be diartikan sebagai proses pemahaman terhadap...",
+        "12": "Kreativitas Dan inovasi masuk ke dalam...",
+        "13": "Apa peran UNESCO?",
+        "14": "Didirikan pada tanggal berapakah Perserikatan Bangsa-Bangsa(PBB)?",
+        "15": "Apa yang menjadi fokus utama dalam pembelajaran abad 21?",
+        "16": "Manakah dari berikut yang merupakan karakteristik pembelajaran abad 21?",
+        "17": "Bagaimana peran teknologi dalam pembelajaran abad 21?",
+        "18": "Mengapa keterampilan interpersonal penting dalam pembelajaran abad 21?",
+        "19": "Ciri utama masyarakat informasi adalah bahwa semua aktifitas masyarakatnya berbasis pada…."
+    },
+    "options": {
+        "0": ["a. Suatu peralihan pembelajaran dimana kurikulum yang dikembangkan menuntun sekolah untuk mengubah pendekatan pembelajaran dari teacher centred menjadi student centered.", "b. Bantuan yang diberikan pendidik agar dapat terjadi proses perolehan ilmu dan pengetahuan, penguasaan kemahiran dan tabiat, serta pembentukan sikap dan kepercayaan pada peserta didik.", "c. Suatu proses yang dilakukan dengan memberikan pendidikan dan pelatihan kepada peserta didik untuk mencapai hasil belajar.", "d. Suatu proses interaksi antara pendidik dengan peserta didik, dan sumber belajar pada satuan lingkungan pendidikan."],
+        "1": ["a. Karena hal ini tidak sesuai dengan pembelajaran abad 21", "b. Karena sesuai dengan zaman modern pada saat ini", "c. Karena hal ini sesuai dengan tuntutan masa depan dimana peserta didik harus memiliki kecakapan berpikir dan belajar.", "d. Karena hal ini tidak sesuai dengan kemauan para pendidik"],
+        "2": ["a. Beradaptasi dengan mudah", "b. Menggunakan teknologi media dan informasi", "c. Public speaking", "d. Kemampuan bahasa asing"],
+        "3": ["a. (Questioning, Associate, Networking, Observing, Informing)", "b. (Questioning, Informing, Guiding, Observing, Trekking)", "c. (Informing, Experimenting, Trekking, Guiding, Associating)", "d. (Associating, Questioning, Observing, Networking, Experimenting)"],
+        "4": ["a. Kemampuan untuk mengasosiasikan satu peristiwa dengan peristiwa lainnya, yakin kemampuan untuk menghubungkan sesuatu yang kelihatannya memiliki latar belakang tidak memiliki keterhubungan masalah, pertanyaan, atau gagasan dari berbagai aspek yang berbeda", "b. Yaitu kemampuan pengamatan lingkungan sekelilingnya dengan teliti termasuk diantaranya teman, keluarga, lingkungan dan masyarakat selain itu juga melihat perkembangan teknologi, sekolah, kota dan sebagainya", "c. Yaitu kemampuan membuat jejaring untuk memperoleh hasil yang lebih baik untuk menemukan sesuatu yang baru, mengujinya melalui jejaring yang berbeda, baik individual atau kelompok yang memiliki latar belakang yang berbeda", "d. Yaitu kemampuan eksperimen untuk mencapai inovasi untuk mencoba dan mengimplementasikan gagasan baru"],
+        "5": ["a. Dalam pembelajaran, siswa dimotivasi untuk melihat sekelilingnya, termasuk mengamati interior ruang tidurnya, mengamati dapur di rumah atau interior lain yang dijumpai di lokasi terdekat antara lain toko, cafe, warung internet dan terminal atau bandara. Hasil pengamatan akan menemukan kedalaman gagasan dan menemukan hal baru untuk melakukan sesuatu", "b. Seorang guru mengajak siswa untuk melakukan eksperimen desain misalnya membuat furniture dari karton bekas kemasan (corrugated board), dan dengan bahan lain. Eksperimen tersebut menjadi mencoba, mencipta, membuat, atau melakukan eksperimen", "c. Dalam pembelajaran, siswa diajak untuk mengembangkan jejaring melalui jejaring sosial di internet, kelompok kerja, kelompok diskusi, atau kelompok lain yang dapat memotivasi mereka untuk meningkatkan pengetahuannya tentang desain", "d. Untuk memberikan pembelajaran desain guru dapat memotivasi siswa untuk mengasosiasikan (menghubungkan) kepribadian dengan warna dinding interior ruang tidur anak-anak"],
+        "6": ["a. Proses pengumpulan informasi oleh guru tentang perkembangan", "b. Sebagai proses evaluasi untuk mengukur kinerja, prestasi, motivasi, dan sikap-sikap peserta didik pada aktifitas yang relevan dalam pembelajaran.", "c. Penilaian yang mengharuskan siswa untuk bisa tanpa melihat kemampuan siwa", "d. Pengukuran yang bermakna secara signifikan atas hasil belajar peserta didik untuk ranah sikap, keterampilan, dan pengetahuan"],
+        "7": ["a. Nyata, valid dan asli", "b. Berbayang, samar dan buram", "c. Terbilang dan ganda", "d. Palsu"],
+        "8": ["a. 6", "b. 2", "c. 8", "d. 3"],
+        "9": ["a. Keterampilan kreativitas dan inovasi", "b. Keterampilan berpikir kritis dan mengatasi masalah", "c. Keterampilan Media dan informasi", "d. Keterampilan hidup dan berkarir"],
+        "10": ["a. Learning and Innovation skills", "b. Life and Career Skills", "c. Life Information and Associating Skills", "d. Information Media and Technology Skills"],
+        "11": ["a. Kebutuhan dan jati diri", "b. Peran teman", "c. Bekerja kelompok", "d. Belajar mandiri"],
+        "12": ["a. Learning and Innovation skills", "b. Life and Career Skills", "c. Life Information and Associating Skills", "d. Information Media and Technology Skills"],
+        "13": ["a. mengkampanyekan kedamaian dan keamanan dengan mempromosikan kerja sama antar negara melalui pendidikan, sains, dan budaya dalam rangka meningkatkan rasa hormat universal kepada keadilan, peraturan hukum, dan HAM dan kebebasan dasar", "b. Mempromosikan pengalaman belajar dalam pendidikan yang di orientasikan pada pencapaian tanah kognitif, efektif dan psikomotorik", "c. Dapat meningkatkan kedamaian dan keamanan belajar pada tingkat yang rendah yakni belajar yang lebih menekankan pada ranah kognitif", "d. Untuk meningkatkan rasa hormat universal kepada keadilan peraturan hukum dan HAM dan kebebasan dasar. Keberhasilan pendidikan abad 21 diukur dari hasil 4 pilar pengalaman"],
+        "14": ["a. 4 November 1946", "b. 5 Januari 1986", "c. 4 Agustus 1966", "d. 8 November 1968"],
+        "15": ["a. Pencapaian nilai tinggi", "b. Pemahaman konten saja", "c. Keterampilan abad 21", "d. Tradisi pembelajaran konvensional"],
+        "16": ["a. Memorakporandakan fakta", "b. Pemecahan masalah", "c. Pemberian tugas rutin", "d. Pembelajaran pasif"],
+        "17": ["a. Tidak relevan", "b. Hanya sebagai hiburan", "c. Mendukung kolaborasi dan kreativitas", "d. Menggantikan peran guru"],
+        "18": ["a. Hanya untuk kepentingan sosial", "b. Meningkatkan kerjasama dan komunikasi", "c. Tidak relevan dalam konteks pembelajaran", "d. Hanya berlaku di lingkungan kerja"],
+        "19": ["a. Penerapan", "b. Pengetahuan", "c. Pencitraan", "d. Pengalaman"]
+    },
+    "answers": {
+        "0": 0,
+        "1": 2,
+        "2": 1,
+        "3": 3,
+        "4": 0,
+        "5": 0,
+        "6": 1,
+        "7": 0,
+        "8": 3,
+        "9": 3,
+        "10": 2,
+        "11": 0,
+        "12": 0,
+        "13": 0,
+        "14": 0,
+        "15": 2,
+        "16": 1,
+        "17": 2,
+        "18": 1,
+        "19": 1
+    }
+}
+
+</script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script>
+
+    function calc_score(user_answers){
+        let score = 0;
+        for(let i = 0; i < user_answers.length; i++){
+            if(user_answers[i] == questionData.answers[i]){
+                score++;
+            }
+        }
+        return Math.floor(score / user_answers.length * 100);
+    }
+    
+    $(document).ready(function () {
+        var current_index = 0;
+        var total_question = Object.keys(questionData.questions).length;
+        console.log(total_question);
+        var current_check = -1;
+        var user_answers = [];
+        for (let i = 0; i < total_question; i++) {
+            user_answers.push(-1);
+        }
+        // place the first question to the page
+        $('#question-text').text(questionData.questions[current_index]);
+        $('#option0').text(questionData.options[current_index][0]);
+        $('#option1').text(questionData.options[current_index][1]);
+        $('#option2').text(questionData.options[current_index][2]);
+        $('#option3').text(questionData.options[current_index][3]);
+        $('#totalQuestion').text(total_question);
+
+        $('.option').on('click', function () {
+            user_answers[current_index] = $(this).val();
+            $('.option').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        $('#next').on('click', function () {
+            $('.option').removeClass('active');
+            $('#prev').css('display', 'block');
+            current_index++;
+            if (current_index == total_question - 1) {
+                $('#next').css('display', 'none');
+                $('#finish').css('display', 'block');
+            }
+            $('#question-text').text(questionData.questions[current_index]);
+            $('#option0').text(questionData.options[current_index][0]);
+            $('#option1').text(questionData.options[current_index][1]);
+            $('#option2').text(questionData.options[current_index][2]);
+            $('#option3').text(questionData.options[current_index][3]);
+            $('.current-question').text(current_index + 1);
+
+            if(user_answers[current_index] != -1){
+                $('.option').eq(user_answers[current_index]).addClass('active');
+            }
+            else{
+                $('.option').removeClass('active');
+            }
+            // make progress bar arial-valuenow increase
+            let progress = (current_index + 1) / total_question * 100;
+            $('.my-bar').css('width', progress + '%');
+
+        });
+
+        $('#prev').on('click', function(){
+            $('.option').removeClass('active');
+            $('#next').css('display', 'block');
+            $('#finish').css('display', 'none');
+            current_index--;
+            if (current_index == 0) {
+                $('#prev').css('display', 'none');
+            }
+            $('#question-text').text(questionData.questions[current_index]);
+            $('#option0').text(questionData.options[current_index][0]);
+            $('#option1').text(questionData.options[current_index][1]);
+            $('#option2').text(questionData.options[current_index][2]);
+            $('#option3').text(questionData.options[current_index][3]);
+            $('.current-question').text(current_index + 1);
+
+            if(user_answers[current_index] != -1){
+                $('.option').eq(user_answers[current_index]).addClass('active');
+            }
+            else{
+                $('.option').removeClass('active');
+            }
+            let progress = (current_index + 1) / total_question * 100;
+            $('.my-bar').css('width', progress + '%');
+        });
+
+        $('#finish').on('click', function(){
+            $('.wrapper').css('display', 'none');
+            $('.wrapper-2').css('display', 'flex');
+            let score = calc_score(user_answers);
+            $('.rating').text(score + '%');
+            const ratings = document.querySelectorAll(".rating");
+            $('#infoSkor').text(score);
+
+            // Iterate over all rating items
+            ratings.forEach((rating) => {
+                // Get content and get score as an int
+                const ratingContent = rating.innerHTML;
+                const ratingScore = parseInt(ratingContent, 10);
+
+                // Define if the score is good, meh or bad according to its value
+                const scoreClass =
+                    ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
+
+                // Add score class to the rating
+                rating.classList.add(scoreClass);
+
+                // After adding the class, get its color
+                const ratingColor = window.getComputedStyle(rating).backgroundColor;
+
+                // Define the background gradient according to the score and color
+                const gradient = `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
+
+                // Set the gradient as the rating background
+                rating.setAttribute("style", gradient);
+
+                // Wrap the content in a tag to show it above the pseudo element that masks the bar
+                rating.innerHTML = `<span>${ratingScore} ${ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
+                    }</span>`;
+            });
+        });
+        var time = 1800;
+        var timer = setInterval(function () {
+            time--;
+            var minutes = Math.floor(time / 60);
+            var seconds = time - minutes * 60;
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            $(".Waktu").html(minutes + ":" + seconds);
+            if (time == 0) {
+                clearInterval(timer);
+                $('.wrapper').css('display', 'none');
+                $('.wrapper-2').css('display', 'flex');
+                let score = calc_score(user_answers);
+                $('.rating').text(score + '%');
+                const ratings = document.querySelectorAll(".rating");
+                $('#infoSkor').text(score);
+
+                // Iterate over all rating items
+                ratings.forEach((rating) => {
+                    // Get content and get score as an int
+                    const ratingContent = rating.innerHTML;
+                    const ratingScore = parseInt(ratingContent, 10);
+
+                    // Define if the score is good, meh or bad according to its value
+                    const scoreClass =
+                        ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
+
+                    // Add score class to the rating
+                    rating.classList.add(scoreClass);
+
+                    // After adding the class, get its color
+                    const ratingColor = window.getComputedStyle(rating).backgroundColor;
+
+                    // Define the background gradient according to the score and color
+                    const gradient = `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
+
+                    // Set the gradient as the rating background
+                    rating.setAttribute("style", gradient);
+
+                    // Wrap the content in a tag to show it above the pseudo element that masks the bar
+                    rating.innerHTML = `<span>${ratingScore} ${ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
+                        }</span>`;
+                });
+            }
+        }, 1000);
+    });
+
+</script>
+<script src="./js/block_back.js"></script>
+<!-- <script src="./js/validate_orientation.js"></script> -->
+</html>

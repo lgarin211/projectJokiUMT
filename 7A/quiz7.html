@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilmu Pendidikan</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/quizes.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,700;0,800;0,900;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<style>
+
+
+
+</style>
+<body>
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+        <div class="wrapper mt-2">
+            <div class="quiz-title mt-2 d-flex flex-row w-100 justify-content-between">
+                <h4>Quiz 7: Permasalahan Pendidikan Nasional</h4>
+                <h4 class="Waktu"></h4>
+            </div>
+            <div id="progress-bar-container" class="mt-2">
+                <div class="progress-bar-title">
+                    <div class="progress-bar-title-text">Kemajuan Quiz: </div>
+                    <div class="progress-bar-title-text">Pertanyaan <span class="current-question">1</span> dari <span id="totalQuestion"></span></div>
+                </div>
+                <div id="progress-bar" class="progress mt-1">
+                    <div class="progress-bar my-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <div class="quiz-question-number mt-3">Pertanyaan <span class="current-question">1</span></div>
+                <div class="question-text-wrapper">
+                    <h5 id="question-text">Istilah pedagogia berasal dari bahasa</h5>
+                </div>
+            </div>
+            <div class="options d-grid">
+                <button class="btn btn-outline-secondary option" value=0 id="option0"></button>
+                <button class="btn btn-outline-secondary option" value=1 id="option1"></button>
+                <button class="btn btn-outline-secondary option" value=2 id="option2"></button>
+                <button class="btn btn-outline-secondary option" value=3 id="option3"></button>
+            </div>
+            <div class="buttons-wrapper mt-1">
+                <button id="prev" class="btn btn-secondary">Sebelumnya</button>
+                <button id="next" class="btn btn-info">Selanjutnya</button>
+                <button id="finish" class="btn btn-warning">Selesai</button>
+            </div>
+        </div>
+        <div class="wrapper-2 mt-2">
+            <h3>🎉 Selamat telah menyelesaikan kuis.</h3>
+            <div class="message">
+                Kamu telah menyelesaikan kuis, tekan tombol selesai untuk kembali ke halaman utama.
+            </div>
+
+            <div class="rating mt-4"></div>
+            <div class="mt-2">
+                Skor kamu adalah <span id="infoSkor"></span>/100
+            </div>
+            <a href="./home.html" class="btn btn-success mt-2">Selesai</a>
+        </div>
+    </div>
+</body>
+<script>
+var questionData = {
+    "questions": {
+        "0": "Apa yang menyebabkan rendahnya kualitas tenaga pengajar di pendidikan tinggi di Indonesia?",
+        "1": "Dibawah ini yang bukan upaya meningkatkan kualitas nasional dan relevansi dalam pendidikan nasional adalah...",
+        "2": "Apa tujuan utama penyelenggaraan pendidikan di Indonesia?",
+        "3": "Pernyataan manakah yang paling tepat mendefinisikan pendidikan efektif?",
+        "4": "Apa kepanjangan dari RSBI?",
+        "5": "Apa sajakah yang membuat sistem pendidikan di Indonesia ini belum optimal...",
+        "6": "Peran strategi pendidikan bahwa pendidikan merupakan alat yang tidak bisa dipisahkan dalam upaya untuk mewujudkan...",
+        "7": "Kita dalam dampak globalisasi dalam pendidikan kita harus menyiapkan peserta didik dengan kompetensi kompetensi yang diperlukan bagi kehidupan yaitu...",
+        "8": "Siapa yang melakukan analisis sistematis hasil ujian nasional di Indonesia?",
+        "9": "Intervensi apa yang diberikan berdasarkan analisis hasil ujian nasional di Indonesia?",
+        "10": "Apa yang menjadi indikator utama dalam menilai mutu pendidikan?",
+        "11": "Mengapa relevansi kurikulum pendidikan sangat penting?",
+        "12": "Apa yang dimaksud dengan desentralisasi pendidikan?",
+        "13": "Apa manfaat utama dari desentralisasi pendidikan?",
+        "14": "Apa tujuan utama dari standar nasional pendidikan?",
+        "15": "Apa kepanjangan dari KTSP?",
+        "16": "Yang bukan termasuk 4 prinsip Kurikulum 13 yaitu...",
+        "17": "Apa nama Kurikulum pertama Indonesia?",
+        "18": "Apa perbedaan in-service dan pre-service?",
+        "19": "Pelaksanakan Akreditasi dilakukan oleh..."
+    },
+    "options": {
+        "0": ["a. Kurangnya anggaran yang digunakan untuk pendidikan", "b. Mutu proses pembelajaran yang belum berkualitas", "c. Sistem pengujian dan penilaian yang melembaga", "d. Masalah yang mendasar dalam kualifikasi belajar"],
+        "1": ["a. Mengimplementasikan penerapan standar nasional pendidikan", "b. Melakukan penjamin kualitas melalui suatu proses analisi yang sistematis", "c. Desentralisasi pendidikan pemberlakuan UU Nomor 22 Tahun 1999", "d. Melakukan penilaian pendidikan melalui ujian sekolah dan ujian nasional"],
+        "2": ["a. Memberikan kesempatan pendidikan yang sama bagi seluruh siswa.", "b. Menghasilkan lulusan yang terampil dan berdaya saing di pasar kerja", "c. Untuk mengurangi tingkat pengangguran di negara tersebut.", "d. Mendorong siswa untuk melanjutkan pendidikan pada jenjang yang lebih tinggi."],
+        "3": ["a. Pendidikan yang fokus pada pengembangan nilai-nilai moral peserta didik", "b. Pendidikan yang memberikan kesempatan yang sama bagi siswa dari semua latar belakang.", "c. Pendidikan yang menekankan pada pencapaian hasil atau program yang direncanakan.", "d. Pendidikan yang mengutamakan kebugaran jasmani dan kegiatan olah raga."],
+        "4": ["a. Program Manajemen Berbasis Sekolah", "b. Rintisan Sekolah Bertaraf Internasional", "c. Kurikulum Tingkat Satuan Pendidikan", "d. Badan Standar Nasional Pendidikan"],
+        "5": ["a. Adanya masalah pemerataan pendidikan", "b. Mutu dan relevansi pendidikan", "c. Efisiensi dan efektivitas pendidikan yang menghalangi tercapainya tujuan pendidikan", "d. Semua benar"],
+        "6": ["a. Kebodohan , kemiskinan, ketidaktahuan", "b. Perdamaian sejati, kebebasan dan keadilan sosial", "c. Keadilan bagi masyarakat, ketindasan dan perang", "d. Keterbelakangan dan kemiskinan"],
+        "7": ["a. Akademi dan ekonomi", "b. Agama dan sosial", "c. Kompetensi keagamaan, akademi, ekonomi dan sosial", "d. Kompetensi agama akademik dan sosial"],
+        "8": ["a. Pemerintah (Pemerintah)", "b. Lembaga Penjaminan Kualitas Pendidikan (LPMP)", "c. Pemerintah provinsi (Pemerintah Provinsi)", "d. Badan Akreditasi Nasional Pendidikan (BAN PT)"],
+        "9": ["a. Pendidikan dan pelatihan untuk proses pembelajaran yang efektif", "b. Bantuan teknis kepada lembaga pendidikan", "c. Perolehan sumber daya pengajaran", "d. Semua benar"],
+        "10": ["a. Jumlah murid per kelas", "b. Tingkat kelulusan siswa", "c. Warna seragam sekolah", "d. Prestasi akademis siswa"],
+        "11": ["a. Untuk mengurangi libur sekolah", "b. Agar siswa lebih siap menghadapi dunia nyata", "c. Hanya untuk memenuhi standar pemerintah", "d. Untuk menentukan ranking sekolah secara nasional"],
+        "12": ["a. Sistem pendidikan hanya diatur oleh pemerintah pusat", "b. Pembagian wilayah administratif sekolah", "c. Delegasi keputusan dan tanggung jawab pendidikan kepada tingkat lokal", "d. Penghapusan sistem pendidikan formal"],
+        "13": ["a. Peningkatan kontrol pusat terhadap kebijakan pendidikan", "b. Responsibilitas lokal yang lebih besar dan sesuai dengan kebutuhan masyarakat", "c. Pemusatan kebijakan oleh pemerintah pusat", "d. Pengurangan peran komunitas dalam pengelolaan pendidikan."],
+        "14": ["a. Membatasi inovasi dalam pembelajaran", "b. Menjamin kualitas dan kesetaraan pendidikan di seluruh negara", "c. Meningkatkan persaingan antar sekolah", "d. Memperkuat kontrol penuh oleh pemerintah pusat"],
+        "15": ["a. Kurikulum Tingkat Satuan Pendidikan", "b. Kurikulum Tenaga Sipil Pendidikan", "c. Kurikulum Tingkat Satuan Pertama", "d. Kurikulum Tenaga Sekolah Perubahan"],
+        "16": ["a. Demokrasi", "b. Desentralisasi", "c. Otonomi pendidikan", "d. Perkembangan zaman"],
+        "17": ["a. KBK", "b. KTSP", "c. Kurikulum Merdeka", "d. Rencana Pembelajaran"],
+        "18": ["a. Guru profesional dan guru tidak profesional", "b. Calon guru dan guru yang sudah bekerja", "c. Guru yang sudah pensiun dan yang belum", "d. Guru tetap dan guru honorer"],
+        "19": ["a. Pihak sekolah", "b. Pemerintah", "c. Badan Independen (BAN PT) atau (BAN S/M)", "d. Badan Inteligen"]
+    },
+    "answers": {
+        "0": 3,
+        "1": 2,
+        "2": 1,
+        "3": 0,
+        "4": 1,
+        "5": 3,
+        "6": 1,
+        "7": 2,
+        "8": 1,
+        "9": 3,
+        "10": 3,
+        "11": 1,
+        "12": 2,
+        "13": 1,
+        "14": 2,
+        "15": 0,
+        "16": 3,
+        "17": 3,
+        "18": 1,
+        "19": 2
+    }
+}
+
+</script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script>
+
+    function calc_score(user_answers){
+        let score = 0;
+        for(let i = 0; i < user_answers.length; i++){
+            if(user_answers[i] == questionData.answers[i]){
+                score++;
+            }
+        }
+        return Math.floor(score / user_answers.length * 100);
+    }
+    
+    $(document).ready(function () {
+        var current_index = 0;
+        var total_question = Object.keys(questionData.questions).length;
+        console.log(total_question);
+        var current_check = -1;
+        var user_answers = [];
+        for (let i = 0; i < total_question; i++) {
+            user_answers.push(-1);
+        }
+        // place the first question to the page
+        $('#question-text').text(questionData.questions[current_index]);
+        $('#option0').text(questionData.options[current_index][0]);
+        $('#option1').text(questionData.options[current_index][1]);
+        $('#option2').text(questionData.options[current_index][2]);
+        $('#option3').text(questionData.options[current_index][3]);
+        $('#totalQuestion').text(total_question);
+
+        $('.option').on('click', function () {
+            user_answers[current_index] = $(this).val();
+            $('.option').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        $('#next').on('click', function () {
+            $('.option').removeClass('active');
+            $('#prev').css('display', 'block');
+            current_index++;
+            if (current_index == total_question - 1) {
+                $('#next').css('display', 'none');
+                $('#finish').css('display', 'block');
+            }
+            $('#question-text').text(questionData.questions[current_index]);
+            $('#option0').text(questionData.options[current_index][0]);
+            $('#option1').text(questionData.options[current_index][1]);
+            $('#option2').text(questionData.options[current_index][2]);
+            $('#option3').text(questionData.options[current_index][3]);
+            $('.current-question').text(current_index + 1);
+
+            if(user_answers[current_index] != -1){
+                $('.option').eq(user_answers[current_index]).addClass('active');
+            }
+            else{
+                $('.option').removeClass('active');
+            }
+            // make progress bar arial-valuenow increase
+            let progress = (current_index + 1) / total_question * 100;
+            $('.my-bar').css('width', progress + '%');
+
+        });
+
+        $('#prev').on('click', function(){
+            $('.option').removeClass('active');
+            $('#next').css('display', 'block');
+            $('#finish').css('display', 'none');
+            current_index--;
+            if (current_index == 0) {
+                $('#prev').css('display', 'none');
+            }
+            $('#question-text').text(questionData.questions[current_index]);
+            $('#option0').text(questionData.options[current_index][0]);
+            $('#option1').text(questionData.options[current_index][1]);
+            $('#option2').text(questionData.options[current_index][2]);
+            $('#option3').text(questionData.options[current_index][3]);
+            $('.current-question').text(current_index + 1);
+
+            if(user_answers[current_index] != -1){
+                $('.option').eq(user_answers[current_index]).addClass('active');
+            }
+            else{
+                $('.option').removeClass('active');
+            }
+            let progress = (current_index + 1) / total_question * 100;
+            $('.my-bar').css('width', progress + '%');
+        });
+
+        $('#finish').on('click', function(){
+            $('.wrapper').css('display', 'none');
+            $('.wrapper-2').css('display', 'flex');
+            let score = calc_score(user_answers);
+            $('.rating').text(score + '%');
+            const ratings = document.querySelectorAll(".rating");
+            $('#infoSkor').text(score);
+
+            // Iterate over all rating items
+            ratings.forEach((rating) => {
+                // Get content and get score as an int
+                const ratingContent = rating.innerHTML;
+                const ratingScore = parseInt(ratingContent, 10);
+
+                // Define if the score is good, meh or bad according to its value
+                const scoreClass =
+                    ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
+
+                // Add score class to the rating
+                rating.classList.add(scoreClass);
+
+                // After adding the class, get its color
+                const ratingColor = window.getComputedStyle(rating).backgroundColor;
+
+                // Define the background gradient according to the score and color
+                const gradient = `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
+
+                // Set the gradient as the rating background
+                rating.setAttribute("style", gradient);
+
+                // Wrap the content in a tag to show it above the pseudo element that masks the bar
+                rating.innerHTML = `<span>${ratingScore} ${ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
+                    }</span>`;
+            });
+        });
+        var time = 1800;
+        var timer = setInterval(function () {
+            time--;
+            var minutes = Math.floor(time / 60);
+            var seconds = time - minutes * 60;
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            $(".Waktu").html(minutes + ":" + seconds);
+            if (time == 0) {
+                clearInterval(timer);
+                $('.wrapper').css('display', 'none');
+                $('.wrapper-2').css('display', 'flex');
+                let score = calc_score(user_answers);
+                $('.rating').text(score + '%');
+                const ratings = document.querySelectorAll(".rating");
+                $('#infoSkor').text(score);
+
+                // Iterate over all rating items
+                ratings.forEach((rating) => {
+                    // Get content and get score as an int
+                    const ratingContent = rating.innerHTML;
+                    const ratingScore = parseInt(ratingContent, 10);
+
+                    // Define if the score is good, meh or bad according to its value
+                    const scoreClass =
+                        ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
+
+                    // Add score class to the rating
+                    rating.classList.add(scoreClass);
+
+                    // After adding the class, get its color
+                    const ratingColor = window.getComputedStyle(rating).backgroundColor;
+
+                    // Define the background gradient according to the score and color
+                    const gradient = `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
+
+                    // Set the gradient as the rating background
+                    rating.setAttribute("style", gradient);
+
+                    // Wrap the content in a tag to show it above the pseudo element that masks the bar
+                    rating.innerHTML = `<span>${ratingScore} ${ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
+                        }</span>`;
+                });
+            }
+        }, 1000);
+    });
+
+</script>
+<script src="./js/block_back.js"></script>
+<!-- <script src="./js/validate_orientation.js"></script> -->
+
+</html>

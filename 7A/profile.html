@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilmu Pendidikan</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/profile.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content mb-4">
+            <h3>OUR TEAM : 1A PGSD</h3>
+            <div class="inner-content">
+            </div>
+        </div>
+        <a href="./home.html" id="backToHome">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-house-door-fill"
+                viewBox="0 0 16 16">
+                <path
+                    d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
+            </svg>
+        </a>
+        <img id="univLogo" src="./assets/logo-univ.png" alt="">
+    </div>
+</body>
+<script>
+    var students = {
+            "0": ["23862060005", "Melinda Fitriani"],
+            "1": ["23862060010", "Alya Nur Ramadani"],
+            "2": ["23862060012", "Nuralfia Sauhaņa"],
+            "3": ["23862060014", "Nuhaa Adani Pitron"],
+            "4": ["22862060017", "Annisa Ramadhani"],
+            "5": ["23862060020", "Tiara Wida Ramadhani"],
+            "6": ["23862060022", "Syavina"],
+            "7": ["23862060025", "Vira Maya"],
+            "8": ["23862060029", "Enjelita Anjani"],
+            "9": ["23862060030", "Najwa Assyifa Anwar"],
+            "10": ["23862060031", "Alya Shalsa Redina"],
+            "11": ["23862060033", "Arina Salsabilla Rizkia"],
+            "12": ["23862060034", "Linda Sofiyanti Wijaya"],
+            "13": ["23862060036", "Satya Surya Panca Wijaya"],
+            "14": ["23862060038", "Bilqist Aqila Izdihar"],
+            "15": ["23862060039", "Lulu Ariyana"],
+            "16": ["23862060040", "Natasya Amelia Apriliyani"],
+            "17": ["23862060041", "Anashya Meidyana Azzahra"],
+            "18": ["23862060042", "Alfiah"],
+            "19": ["23862060043", "Salwa Alika Waluyo"],
+            "20": ["23862060044", "Putuhunnisa"],
+            "21": ["23862060047", "Naufal Muhammad Alfikri"],
+            "22": ["23862060051", "Septiani Nur Sabibah"],
+            "23": ["23862060054", "Mohammad Zenith Zacky Ayyashri"],
+            "24": ["23862060057", "Jihan Fadilah"],
+            "25": ["23862060058", "Aurellia Putri Irawan"],
+            "26": ["23862060059", "Rizka Puspita"],
+            "27": ["23862060060", "Falina Putri Aprilia"],
+            "28": ["23862060062", "Riska Septiyani"],
+            "29": ["23862060063", "Lyvia Sulistia"],
+            "30": ["23862060064", "Nadiva Nazla Latiśya"],
+            "31": ["23862060067", "Gisha Tri Utami"],
+            "32": ["23862060078", "Adinda Nur Fajriyanti"],
+            "33": ["23862060201", "Chika Aprillah Fitriadi"],
+            "34": ["23862060207", "Yusmita Aulia"]
+        };
+</script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script>
+
+    function init_student(){
+        const sortedStudents = Object.values(students).sort((a, b) => a[1].localeCompare(b[1]));
+
+        for (let i = 0; i < sortedStudents.length; i++) {
+            const element = sortedStudents[i];
+            students[i] = element; 
+            $(".inner-content").append(`
+                <div class="student-wrapper mb-2">
+                    <input class="student-num" value="${i+1}." type="text" disabled>
+                    <input type="text" name="name" id="name" value="${element[1]}" disabled >
+                    <input type="text" name="nim" id="nim" value="${element[0]}" disabled>
+                </div>
+            `);
+        }
+    }
+    $(document).ready(() =>{
+        init_student();
+    });
+</script>
+<script src="./js/validate_orientation.js"></script>
+</html>

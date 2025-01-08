@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilmu Pendidikan</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/quizes.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,700;0,800;0,900;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<style>
+
+
+
+</style>
+<body>
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+        <div class="wrapper mt-2">
+            <div class="quiz-title mt-2 d-flex flex-row w-100 justify-content-between">
+                <h4>Quiz 2 : Hakikat Manusia dan Pengembangannya</h4>
+                <h4 class="Waktu"></h4>
+            </div>
+            <div id="progress-bar-container" class="mt-2">
+                <div class="progress-bar-title">
+                    <div class="progress-bar-title-text">Kemajuan Quiz: </div>
+                    <div class="progress-bar-title-text">Pertanyaan <span class="current-question">1</span> dari <span id="totalQuestion"></span></div>
+                </div>
+                <div id="progress-bar" class="progress mt-1">
+                    <div class="progress-bar my-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <div class="quiz-question-number mt-3">Pertanyaan <span class="current-question">1</span></div>
+                <div class="question-text-wrapper">
+                    <h5 id="question-text"></h5>
+                </div>
+            </div>
+            <div class="options d-grid">
+                <button class="btn btn-outline-secondary option" value=0 id="option0"></button>
+                <button class="btn btn-outline-secondary option" value=1 id="option1"></button>
+                <button class="btn btn-outline-secondary option" value=2 id="option2"></button>
+                <button class="btn btn-outline-secondary option" value=3 id="option3"></button>
+            </div>
+            <div class="buttons-wrapper mt-1">
+                <button id="prev" class="btn btn-secondary">Sebelumnya</button>
+                <button id="next" class="btn btn-info">Selanjutnya</button>
+                <button id="finish" class="btn btn-warning">Selesai</button>
+            </div>
+        </div>
+        <div class="wrapper-2 mt-2">
+            <h3>🎉 Selamat telah menyelesaikan kuis.</h3>
+            <div class="message">
+                Kamu telah menyelesaikan kuis, tekan tombol selesai untuk kembali ke halaman utama.
+            </div>
+
+            <div class="rating mt-4"></div>
+            <div class="mt-2">
+                Skor kamu adalah <span id="infoSkor"></span>/100
+            </div>
+            <a href="./home.html" class="btn btn-success mt-2">Selesai</a>
+        </div>
+    </div>
+</body>
+<script>
+    var questionData = {
+        "questions": {
+            "0": "Jika pendidikan berorientasi pada persiapan masa depan dan bukan pada kemanusiaan dapat menjauhkan manusia dari ...",
+            "1": "Manakah urutan yang benar kata 'Al-Insa' yang dipakai untuk menyebut dalam konteks kedudukan manusia sebagai makhluk yang mempunyai kelebihan-kelebihan ...",
+            "2": "Berikut ini yang bukan termasuk 3 rangkaian/ikatan yang terdapat dalam kemampuan menghayati kebahagiaan adalah ...",
+            "3": "Manusia adalah makhluk sosial yang harus memiliki hubungan baik yang timbal balik dengan manusia lain dengan cara memiliki ...",
+            "4": "Apa yang dimaksud dengan kemampuan kata hati ...",
+            "5": "Peran pendidikan yang tepat adalah ...",
+            "6": "Disisi lain diamati bahwa banyak ayat-ayat Al-Qur'an yang menggunakan kata 'Al Basyar' yang mengisyaratkan bahwa proses kejadian manusia sebagai Al Basyar, melalui tahapan-tahapan sehingga mencapai tahap kedewasaan. Firman Allah 'Dan diantara tanda-tanda kekuasaan-Nya menciptakan kamu dari tanah, ketika kamu menjadi Basyar kamu bertebaran.' Firman Allah dalam surah ...",
+            "7": "Jika selama seseorang itu masih menyebut dirinya manusia dan mau dipandang sebagai manusia, maka wajib itu menjadi suatu keniscayaan, karena jika mengelaknya berarti dia mengingkari kemanusiaannya sebagai makhluk social, hal ini merupakan arti dari ...",
+            "8": "Bagaimana guru dapat membantu siswa mengembangkan kemampuan menyadari diri ...",
+            "9": "Drijakara (1968: 7) Mengatakan bahwa manusia adalah ...",
+            "10": "Mengapa masa depan penuh dengan ketidakpastian ...",
+            "11": "Bagaimana guru bisa menanamkan rasa tanggung jawab terhadap Tuhan kepada siswanya ...",
+            "12": "Kata 'An-Nas' di dalam Al-Qur'an disebutkan sebanyak ... Kali dan tersebar di dalam ... Surah",
+            "13": "Contoh dari bersikap jujur, bersikap/berlaku adil adalah termasuk dari dimensi ...",
+            "14": "Manusia sebagai kumpulan tubuh, zat kimia biologis yang semuanya itu terdiri dari beberapa zat. Dari beberapa pendapat atau pandangan ini termasuk hakekat manusia yang termasuk dalam aliran ...",
+            "15": "Bagaimana cara untuk merasakan kebebasan batin kepada diri sendiri ...",
+            "16": "Pada dasarnya manusia adalah makhluk religius, sebagaimana telah disinggung di depan. Sebagai makhluk religius, manusia sadar dan meyakini akan adanya kekuatan supranatural di luar dirinya, merupakan dimensi dari ...",
+            "17": "Istilah kunci (key term) yang ke empat digunakan untuk menunjukkan arti pokok manusia yaitu ...",
+            "18": "Bagaimana pendidikan dapat berperan dalam pilihan-pilihan manusia ...",
+            "19": "Dibawah ini yang merupakan dimensi hakikat kemanusiaan, kecuali..."
+        },
+        "options": {
+            "0": ["A. Keimanan", "B. Kemanusiaan", "C. Kesosialan", "D. Tanggung jawab"],
+            "1": ["A. Pertama manusia sebagai makhluk berfikir, kedua makhluk pembawa amanat, ketiga manusia sebagai makhluk yang bertanggung jawab pada semua yang dibuat", "B. Pertama manusia sebagai makhluk yang berbudi pekerti, kedua makhluk yang bersosialisasi, ketiga manusia sebagai yang bertanggung jawab", "C. Pertama manusia sebagai makhluk yang pembawa amanat, kedua manusia sebagai makhluk berfikir, ketiga sebagai makhluk yang tegar", "D. Pertama manusia adalah makhluk yang sempurna, kedua manusia sebagai makhluk yang optimis, kedua makhluk yang taqwa, ketiga makhluk yang bertanggung jawab terhadap apa yang telah di buat"],
+            "2": ["A. Usaha", "B. Norma-norma", "C. Alam", "D. Takdir"],
+            "3": ["A. Kemampuan berinteraksi", "B. Kemampuan menyadari diri", "C. Rasa kebebasan", "D. Moral"],
+            "4": ["A. Keterampilan berbicara", "B. Keterampilan berempati dan memahami perasaan orang lain", "C. Keterampilan menulis dengan ekspresi emosional", "D. Keterampilan berpikir kritis"],
+            "5": ["A. Membuat manusia dapat melakukan tugas kemanusiaannya", "B. Membuat manusia dapat hidup", "C. Membuat manusia putus asa", "D. Membuat manusia tidak bertanggung jawab"],
+            "6": ["A. Al-Kahf : 11", "B. Al-Rum : 20", "C. Al-Isra : 61", "D. Al-Baqarah : 34"],
+            "7": ["A. Rasa kebebasan", "B. Kewajiban", "C. Individual", "D. Moralitas"],
+            "8": ["A. Mengabaikan perkembangan pribadi siswa", "B. Menyediakan umpan balik konstruktif", "C. Tidak memperhatikan kebutuhan individu", "D. Menetapkan standar yang tidak realistis"],
+            "9": ["A. Makhluk yang tidak berhadapan dengan dirinya sendiri, berhadapan tetapi juga menghadapi, menghadapi soal, dan menghadapi kesukaran", "B. Makhluk yang berhadapan dengan dirinya sendiri, menghadapi soal dan menghadapi kesukaran", "C. Yang berhadapan dengan dirinya sendiri dan tidak menghadapi soal dan kesukaran", "D. Tidak berhadapan dengan dirinya sendiri, menghadapi soal dan menghadapi kesukaran"],
+            "10": ["A. Karena masa depan dapat diprediksi dengan pasti", "B. Karena masa depan dapat digambarkan dengan pasti", "C. Karena masa depan hanya mampu didukung berdasarkan pengalaman yang telah dilalui", "D. Karena masa depan pasti ada disebabkan karena kekuatan akan perubahan"],
+            "11": ["A. Melakukan keterampilan berbicara", "B. Melakukan Bhakti sosial", "C. Menanggung norma sesuai agama masing-masing", "D. Menyediakan sarana peduli lingkungan"],
+            "12": ["A. 241, 55", "B. 421, 35", "C. 124, 15", "D. 214, 95"],
+            "13": ["A. Dimensi Kesusilaan", "B. Dimensi Keberagaman", "C. Dimensi Kesosialan", "D. Dimensi Keindividualan"],
+            "14": ["A. Spiritual", "B. Dualisme", "C. Materialisme", "D. Budualisme"],
+            "15": ["A. Perbuatan yang telah dilakukan telah menjiwai", "B. Melakukan hal yang di sukai tanpa aturan", "C. Terjun bebas", "D. Healing"],
+            "16": ["A. Dimensi Kesosialan", "B. Dimensi Keindividualan", "C. Dimensi Kesusilaan", "D. Dimensi Keberagaman"],
+            "17": ["A. Bani Qurays", "B. Bani Ummayah", "C. Zurriyah Adam", "D. Bani Adam"],
+            "18": ["A. Pendidikan dapat memberikan informasi dan pengetahuan yang diperlukan untuk membuat pilihan", "B. Pendidikan dapat mengembangkan kemampuan berpikir kritis dan rasional yang diperlukan untuk membuat pilihan", "C. Pendidikan dapat membentuk karakter dan nilai-nilai yang diperlukan untuk membuat pilihan yang baik", "D. Semua jawaban benar"],
+            "19": ["A.Dimensi keindividualan", "B. Dimensi Realitas", "C. Dimensi kesusilaan", "D. Dimensi kesosialan"]
+        },
+        "answers": {
+            "0": 1,
+            "1": 0,
+            "2": 2,
+            "3": 0,
+            "4": 1,
+            "5": 0,
+            "6": 1,
+            "7": 1,
+            "8": 1,
+            "9": 0,
+            "10": 1,
+            "11": 2,
+            "12": 1,
+            "13": 3,
+            "14": 2,
+            "15": 1,
+            "16": 0,
+            "17": 3,
+            "18": 3,
+            "19": 1
+        }
+    }
+
+</script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script>
+
+    function calc_score(user_answers){
+        let score = 0;
+        for(let i = 0; i < user_answers.length; i++){
+            if(user_answers[i] == questionData.answers[i]){
+                score++;
+            }
+        }
+        return Math.floor(score / user_answers.length * 100);
+    }
+    
+    $(document).ready(function () {
+        var current_index = 0;
+        var total_question = Object.keys(questionData.questions).length;
+        console.log(total_question);
+        var current_check = -1;
+        var user_answers = [];
+        for (let i = 0; i < total_question; i++) {
+            user_answers.push(-1);
+        }
+        // place the first question to the page
+        $('#question-text').text(questionData.questions[current_index]);
+        $('#option0').text(questionData.options[current_index][0]);
+        $('#option1').text(questionData.options[current_index][1]);
+        $('#option2').text(questionData.options[current_index][2]);
+        $('#option3').text(questionData.options[current_index][3]);
+        $('#totalQuestion').text(total_question);
+
+        $('.option').on('click', function () {
+            user_answers[current_index] = $(this).val();
+            $('.option').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        $('#next').on('click', function () {
+            $('.option').removeClass('active');
+            $('#prev').css('display', 'block');
+            current_index++;
+            if (current_index == total_question - 1) {
+                $('#next').css('display', 'none');
+                $('#finish').css('display', 'block');
+            }
+            $('#question-text').text(questionData.questions[current_index]);
+            $('#option0').text(questionData.options[current_index][0]);
+            $('#option1').text(questionData.options[current_index][1]);
+            $('#option2').text(questionData.options[current_index][2]);
+            $('#option3').text(questionData.options[current_index][3]);
+            $('.current-question').text(current_index + 1);
+
+            if(user_answers[current_index] != -1){
+                $('.option').eq(user_answers[current_index]).addClass('active');
+            }
+            else{
+                $('.option').removeClass('active');
+            }
+            // make progress bar arial-valuenow increase
+            let progress = (current_index + 1) / total_question * 100;
+            $('.my-bar').css('width', progress + '%');
+
+        });
+
+        $('#prev').on('click', function(){
+            $('.option').removeClass('active');
+            $('#next').css('display', 'block');
+            $('#finish').css('display', 'none');
+            current_index--;
+            if (current_index == 0) {
+                $('#prev').css('display', 'none');
+            }
+            $('#question-text').text(questionData.questions[current_index]);
+            $('#option0').text(questionData.options[current_index][0]);
+            $('#option1').text(questionData.options[current_index][1]);
+            $('#option2').text(questionData.options[current_index][2]);
+            $('#option3').text(questionData.options[current_index][3]);
+            $('.current-question').text(current_index + 1);
+
+            if(user_answers[current_index] != -1){
+                $('.option').eq(user_answers[current_index]).addClass('active');
+            }
+            else{
+                $('.option').removeClass('active');
+            }
+            let progress = (current_index + 1) / total_question * 100;
+            $('.my-bar').css('width', progress + '%');
+        });
+
+        $('#finish').on('click', function(){
+            $('.wrapper').css('display', 'none');
+            $('.wrapper-2').css('display', 'flex');
+            let score = calc_score(user_answers);
+            $('.rating').text(score + '%');
+            const ratings = document.querySelectorAll(".rating");
+            $('#infoSkor').text(score);
+
+            // Iterate over all rating items
+            ratings.forEach((rating) => {
+                // Get content and get score as an int
+                const ratingContent = rating.innerHTML;
+                const ratingScore = parseInt(ratingContent, 10);
+
+                // Define if the score is good, meh or bad according to its value
+                const scoreClass =
+                    ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
+
+                // Add score class to the rating
+                rating.classList.add(scoreClass);
+
+                // After adding the class, get its color
+                const ratingColor = window.getComputedStyle(rating).backgroundColor;
+
+                // Define the background gradient according to the score and color
+                const gradient = `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
+
+                // Set the gradient as the rating background
+                rating.setAttribute("style", gradient);
+
+                // Wrap the content in a tag to show it above the pseudo element that masks the bar
+                rating.innerHTML = `<span>${ratingScore} ${ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
+                    }</span>`;
+            });
+        });
+        var time = 1800;
+        var timer = setInterval(function () {
+            time--;
+            var minutes = Math.floor(time / 60);
+            var seconds = time - minutes * 60;
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            $(".Waktu").html(minutes + ":" + seconds);
+            if (time == 0) {
+                clearInterval(timer);
+                $('.wrapper').css('display', 'none');
+                $('.wrapper-2').css('display', 'flex');
+                let score = calc_score(user_answers);
+                $('.rating').text(score + '%');
+                const ratings = document.querySelectorAll(".rating");
+                $('#infoSkor').text(score);
+
+                // Iterate over all rating items
+                ratings.forEach((rating) => {
+                    // Get content and get score as an int
+                    const ratingContent = rating.innerHTML;
+                    const ratingScore = parseInt(ratingContent, 10);
+
+                    // Define if the score is good, meh or bad according to its value
+                    const scoreClass =
+                        ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
+
+                    // Add score class to the rating
+                    rating.classList.add(scoreClass);
+
+                    // After adding the class, get its color
+                    const ratingColor = window.getComputedStyle(rating).backgroundColor;
+
+                    // Define the background gradient according to the score and color
+                    const gradient = `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
+
+                    // Set the gradient as the rating background
+                    rating.setAttribute("style", gradient);
+
+                    // Wrap the content in a tag to show it above the pseudo element that masks the bar
+                    rating.innerHTML = `<span>${ratingScore} ${ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
+                        }</span>`;
+                });
+            }
+        }, 1000);
+    });
+
+</script>
+<script src="./js/block_back.js"></script>
+<!-- <script src="./js/validate_orientation.js"></script> -->
+
+</html>

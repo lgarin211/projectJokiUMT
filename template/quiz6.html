@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilmu Pendidikan</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/quizes.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,700;0,800;0,900;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<style>
+
+
+
+</style>
+<body>
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+        <div class="wrapper mt-2">
+            <div class="quiz-title mt-2 d-flex flex-row w-100 justify-content-between">
+                <h4>Quiz 6: Pendidikan Nilai</h4>
+                <h4 class="Waktu"></h4>
+            </div>
+            <div id="progress-bar-container" class="mt-2">
+                <div class="progress-bar-title">
+                    <div class="progress-bar-title-text">Kemajuan Quiz: </div>
+                    <div class="progress-bar-title-text">Pertanyaan <span class="current-question">1</span> dari <span id="totalQuestion"></span></div>
+                </div>
+                <div id="progress-bar" class="progress mt-1">
+                    <div class="progress-bar my-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <div class="quiz-question-number mt-3">Pertanyaan <span class="current-question">1</span></div>
+                <div class="question-text-wrapper">
+                    <h5 id="question-text"></h5>
+                </div>
+            </div>
+            <div class="options d-grid">
+                <button class="btn btn-outline-secondary option" value=0 id="option0"></button>
+                <button class="btn btn-outline-secondary option" value=1 id="option1"></button>
+                <button class="btn btn-outline-secondary option" value=2 id="option2"></button>
+                <button class="btn btn-outline-secondary option" value=3 id="option3"></button>
+            </div>
+            <div class="buttons-wrapper mt-1">
+                <button id="prev" class="btn btn-secondary">Sebelumnya</button>
+                <button id="next" class="btn btn-info">Selanjutnya</button>
+                <button id="finish" class="btn btn-warning">Selesai</button>
+            </div>
+        </div>
+        <div class="wrapper-2 mt-2">
+            <h3>🎉 Selamat telah menyelesaikan kuis.</h3>
+            <div class="message">
+                Kamu telah menyelesaikan kuis, tekan tombol selesai untuk kembali ke halaman utama.
+            </div>
+            <!-- <div class="rating-container"> -->
+                <div class="rating mt-4"></div>
+            <!-- </div> -->
+            <div class="mt-2">
+                Skor kamu adalah <span id="infoSkor"></span>/100
+            </div>
+            <a href="./home.html" class="btn btn-success mt-2">Selesai</a>
+        </div>
+    </div>
+</body>
+<script>
+var questionData = {
+    "questions": {
+	"0": "Pada tahap apa seseorang sudah mulai bersedia menerima dan menanggapi secara aktif stimulus dalam bentuk respons yang nyata...",
+	"1": "Manakah yang bukan nilai-nilai yang dibagi dari Mac Scheller...",
+	"2": "Siapa yang mengatakan bahwa nilai adalah kualitas atau keadaan sesuatu yang bermanfaat bagi manusia, baik secara lahir maupun batin...",
+	"3": "Pendekatan apa yang perkembangan moral nya dilihat sebagai perkembangan tingkat berpikir dalam membuat pertimbangan moral, dari suatu tingkat uang lebih rendah menuju suatu tingkat yang lebih tinggi...",
+	"4": "Sistem pendidikan di Indonesia saat ini telah kehilangan makna dan nilai, hal itu terjadi karna pelaku pendidikan saat ini lebih mementingkan...",
+	"5": "Pendekatan yang memberi penekanan pada penanaman nilai-nilai sosial dalam diri siswa adalah pendekatan...",
+	"6": "Nilai pada dasarnya disebut sebagai standar penuntun dalam menentukan sesuatu itu baik, indah, berharga atau tidak adalah pengertian menurut...",
+	"7": "Pendapat siapa kah yang menyatakan bahwa pelaksaan Pendidikan Nilai dapat dilakukan oleh semua orang yang terlibat dalam proses pendidikan termasuk di dalamnya kepala sekolah dan staf administrasi…",
+	"8": "Apa saja metode-metode pengajaran yang sering digunakan dalam pembelajaran adalah...",
+	"9": "Perhatikan pernyataan-pernyatan berikut. (1) Pendekatan perkembangan kognitif mudah digunakan \n(2) memberikan penekanan pada aspek kognitif dan perkembangan \n(3) membantu siswa dalam membuat pertimbangan moral \n(4)mendorong siswa untuk mendiskusikan alasan-alasannya ketika memilih nilai dan posisinya dalam suatu masalah moral \nHal-Hal tujuan yang ingin dicapai oleh pendekatan nilai adalah...",
+	"10": "perhatikan data berikut. (1) membantu siswa untuk menggunakan kemampuan berpikir logis \n(2) membantu pengajaran yang sering digunakan dalam pembelajaran secara individu \n(3) membantu siswa untuk menggunakan proses berpikir rasional dan analtik \n(4) membantu Perkembangan nilai nilai sosial ada dua tujuan utama pendidikan moral menurut pendekatan ini disebut...",
+	"11": "Pendidikan nasional bertujuan membentuk manusia yang beriman dan bertakwa kepada Tuhan Yang Maha Esa, berakhlak dan berbudi mulia, sehat, berilmu, cakap, serta menjadi warga negara yang demokratis dan bertanggungjawab terhadap kesejahteraan masyarakat dan tanah air. Fungsi pendidikan yang terdapat pasal...",
+	"12": "perhatikan metode data berikut. \n(1) membantu siswa untuk menyadari dan mengidentifikasi nilai-nilai mereka sendiri serta nilai-nilainya sendiri \n(2) membantu siswa supaya mereka mampu menggunakan secara bersama-sama kemampuan berpikir rasional dan kesadaran emosional. \n(3) membantu pengajaran yang sering digunakan dalam pembelajaran secara moral dan sosial \n(4) membantu siswa agar kemampuan berpikir logis \n(5) membantu siswa supaya mereka mampu berkomunikasi secara terbuka dan jujur.\nTujuan pendidikan nilai menurut pendekatan ini ada tiga, yang pertama adalah...",
+	"13": "Hal-Hal yang sangat di pentingkan dalam program pendidikan adalah…",
+	"14": "Menurut Krathwohl dalam Mawardi Lubis (2008: 16-18) proses pembentukan nilai pada anak dapat dikelompokkan dalam 5 tahap, yaitu...",
+	"15": "Sikap dan perilaku yang tidak bergantung kepada orang lain dalam melakukan sesuatu merupakan nilai-nilai pendidikan karakter yaitu…",
+	"16": "Menurut cholisin (1989;25) adalah…",
+	"17": "Nilai di rumuskan dari dua pengertian yang terkandung dalam istilah pendidikan dan istilah nilai…",
+	"18": "Arti value bisa diartikan sebagai…",
+	"19": "Ada dua tujuan utama pendidikan moral, yaitu…"
+    },
+    "options": {
+	"0": ["A. Tahap Valuing (memberi nilai)", "B. Tahap Characterization (karakterisasi nilai)", "C. Tahap Responding (menanggapi)", "D. Tahap Receiving (menyimak)"],
+	"1": ["A. Nilai Hidup", "B. Nilai Kenikmatan", "C. Nilai Sosial", "D. Nilai Kejiwaan"],
+	"2": ["A. Widjaja (1985: 155)", "B. Darji Darmodiharjo (1995: 1)", "C. Cholisin (1989: 25)", "D. Rosyadi (2004: 114)"],
+	"3": ["A. Pendekatan Perkembangan Kognitif", "B. Pendekatan Analisis Nilai", "C. Pendekatan Penanaman Nilai", "D. Pendekatan Pembelajaran Berbuat"],
+	"4": ["A. Gaya", "B. Skil", "C. Knowledge", "D. Wisdom"],
+	"5": ["A. Pendekatan penanaman nilai", "B. Pendekatan perkembangan kognitif", "C. Pendekatan analisis nilai", "D. Pendekatan klarifikasi nilai"],
+	"6": ["A. Achmadi", "B. Darji darmodiharjo", "C. Fraenkel", "D. Gordon M. hart"],
+	"7": ["A. Kaswardi (1993: 3)", "B. Aeni (2009)", "C. Zaim Elmubarok (2009: 61-75)", "D. Mulyana (1999)"],
+	"8": ["A. Nilai moral, penyelidikan kepustakaan, penyelidikan lapangan", "B. Kognitif, nilai sosial, berpikir logis", "C. Aspek perkembangan, pendekatan moral, pendekatan perkembangan", "D. Pendekatan moral, nilai moral, aspek perkembangan"],
+	"9": ["A. (1) dan (2)", "B. (2) dan (3)", "C. (2) dan (4)", "D. (3) dan (4)"],
+        "10": ["A. (1), (3), dan (4)", "B. (2), (4), dan (1)", "C. (1) dan (3)", "D. (1) dan (4)"],
+        "11": ["A. Pasal 3 UU No. 20 tahun 2003", "B. Pasal 3 UU No. 21 tahun 2003", "C. Pasal 2 UU No. 20 tahun 2003", "D. Pasal 2 UU No. 21 tahun 2004"],
+        "12": ["A. (4), (5), dan (2)", "B. (1), (2), dan (5)", "C. (5), (1), dan (4)", "D. (3), (4), dan (1)"],
+        "13": ["A. Membantu nilai yang bersifat subjektif", "B. Untuk mengembangkan keterampilan", "C. Mengembangkan keterampilan siswa dalam melakukan proses menilai", "D. Mendorong siswa dengan pertanyaan-pertanyaan relavan"],
+        "14": ["A. Tahap Mentindak Lanjuti", "B. Tahap Menanggapi", "C. Tahap Menyimak", "D. Tahap Receiving, Responding, Valuing, Mengorganisasikan, dan Karakteristik"],
+        "15": ["A. Religius", "B. Mandiri", "C. Gotong Royong", "D. Integritas"],
+        "16": ["A. Nilai pada dasarnya disebut sebagai standar penuntun", "B. Nilai menjadi ukuran untuk menghukum atau memilih tindakan atau tujuan tertentu", "C. Nilai itu selalu dihadapi oleh manusia dalam hidup kesehariannya", "D. Nilai adalah kualitas atau keadaan"],
+        "17": ["A. melekat", "B. menilai", "C. menyatu", "D. menimbang"],
+        "18": ["A. Harga taksiran", "B. Pengkualitasan", "C. Pengtaksiran", "D. Penghargaan"],
+        "19": ["A. memberikan kesempatan kepada siswa untuk melakukan perbuatan nilai moral, mendorong siswa untuk melihat diri mereka sebagai makhluk sosial", "B. memberi kesempatan kepada siswa untuk melakukan perbutuan moral, mendorong siswa untuk melihat diri mereka sebagai makhluk individu dan makhluk sosial", "C. tidak memiliki kebebasan sepenuhnya", "D. tidak memiliki kebebasan sepenuhnya"]
+    },
+    "answers": {
+        "0": 2,
+        "1": 2,
+        "2": 1,
+        "3": 0,
+        "4": 1,
+        "5": 0,
+        "6": 2,
+        "7": 3,
+        "8": 0,
+        "9": 3,
+        "10": 1,
+        "11": 0,
+        "12": 1,
+        "13": 2,
+        "14": 3,
+        "15": 1,
+        "16": 0,
+        "17": 2,
+        "18": 3,
+        "19": 1
+    }
+}
+
+
+
+</script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script>
+
+    function calc_score(user_answers){
+        let score = 0;
+        for(let i = 0; i < user_answers.length; i++){
+            if(user_answers[i] == questionData.answers[i]){
+                score++;
+            }
+        }
+        return Math.floor(score / user_answers.length * 100);
+    }
+    
+    $(document).ready(function () {
+        var current_index = 0;
+        var total_question = Object.keys(questionData.questions).length;
+        console.log(total_question);
+        var current_check = -1;
+        var user_answers = [];
+        for (let i = 0; i < total_question; i++) {
+            user_answers.push(-1);
+        }
+        // place the first question to the page
+        $('#question-text').text(questionData.questions[current_index]);
+        $('#option0').text(questionData.options[current_index][0]);
+        $('#option1').text(questionData.options[current_index][1]);
+        $('#option2').text(questionData.options[current_index][2]);
+        $('#option3').text(questionData.options[current_index][3]);
+        $('#totalQuestion').text(total_question);
+
+        $('.option').on('click', function () {
+            user_answers[current_index] = $(this).val();
+            $('.option').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        $('#next').on('click', function () {
+            $('.option').removeClass('active');
+            $('#prev').css('display', 'block');
+            current_index++;
+            if (current_index == total_question - 1) {
+                $('#next').css('display', 'none');
+                $('#finish').css('display', 'block');
+            }
+            $('#question-text').text(questionData.questions[current_index]);
+            $('#option0').text(questionData.options[current_index][0]);
+            $('#option1').text(questionData.options[current_index][1]);
+            $('#option2').text(questionData.options[current_index][2]);
+            $('#option3').text(questionData.options[current_index][3]);
+            $('.current-question').text(current_index + 1);
+
+            if(user_answers[current_index] != -1){
+                $('.option').eq(user_answers[current_index]).addClass('active');
+            }
+            else{
+                $('.option').removeClass('active');
+            }
+            // make progress bar arial-valuenow increase
+            let progress = (current_index + 1) / total_question * 100;
+            $('.my-bar').css('width', progress + '%');
+
+        });
+
+        $('#prev').on('click', function(){
+            $('.option').removeClass('active');
+            $('#next').css('display', 'block');
+            $('#finish').css('display', 'none');
+            current_index--;
+            if (current_index == 0) {
+                $('#prev').css('display', 'none');
+            }
+            $('#question-text').text(questionData.questions[current_index]);
+            $('#option0').text(questionData.options[current_index][0]);
+            $('#option1').text(questionData.options[current_index][1]);
+            $('#option2').text(questionData.options[current_index][2]);
+            $('#option3').text(questionData.options[current_index][3]);
+            $('.current-question').text(current_index + 1);
+
+            if(user_answers[current_index] != -1){
+                $('.option').eq(user_answers[current_index]).addClass('active');
+            }
+            else{
+                $('.option').removeClass('active');
+            }
+            let progress = (current_index + 1) / total_question * 100;
+            $('.my-bar').css('width', progress + '%');
+        });
+
+        $('#finish').on('click', function(){
+            $('.wrapper').css('display', 'none');
+            $('.wrapper-2').css('display', 'flex');
+            let score = calc_score(user_answers);
+            $('.rating').text(score + '%');
+            const ratings = document.querySelectorAll(".rating");
+            $('#infoSkor').text(score);
+
+            // Iterate over all rating items
+            ratings.forEach((rating) => {
+                // Get content and get score as an int
+                const ratingContent = rating.innerHTML;
+                const ratingScore = parseInt(ratingContent, 10);
+
+                // Define if the score is good, meh or bad according to its value
+                const scoreClass =
+                    ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
+
+                // Add score class to the rating
+                rating.classList.add(scoreClass);
+
+                // After adding the class, get its color
+                const ratingColor = window.getComputedStyle(rating).backgroundColor;
+
+                // Define the background gradient according to the score and color
+                const gradient = `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
+
+                // Set the gradient as the rating background
+                rating.setAttribute("style", gradient);
+
+                // Wrap the content in a tag to show it above the pseudo element that masks the bar
+                rating.innerHTML = `<span>${ratingScore} ${ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
+                    }</span>`;
+            });
+        });
+        var time = 1800;
+        var timer = setInterval(function () {
+            time--;
+            var minutes = Math.floor(time / 60);
+            var seconds = time - minutes * 60;
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            $(".Waktu").html(minutes + ":" + seconds);
+            if (time == 0) {
+                clearInterval(timer);
+                $('.wrapper').css('display', 'none');
+                $('.wrapper-2').css('display', 'flex');
+                let score = calc_score(user_answers);
+                $('.rating').text(score + '%');
+                const ratings = document.querySelectorAll(".rating");
+                $('#infoSkor').text(score);
+
+                // Iterate over all rating items
+                ratings.forEach((rating) => {
+                    // Get content and get score as an int
+                    const ratingContent = rating.innerHTML;
+                    const ratingScore = parseInt(ratingContent, 10);
+
+                    // Define if the score is good, meh or bad according to its value
+                    const scoreClass =
+                        ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
+
+                    // Add score class to the rating
+                    rating.classList.add(scoreClass);
+
+                    // After adding the class, get its color
+                    const ratingColor = window.getComputedStyle(rating).backgroundColor;
+
+                    // Define the background gradient according to the score and color
+                    const gradient = `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
+
+                    // Set the gradient as the rating background
+                    rating.setAttribute("style", gradient);
+
+                    // Wrap the content in a tag to show it above the pseudo element that masks the bar
+                    rating.innerHTML = `<span>${ratingScore} ${ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
+                        }</span>`;
+                });
+            }
+        }, 1000);
+    });
+
+</script>
+<script src="./js/block_back.js"></script>
+<!-- <script src="./js/validate_orientation.js"></script> -->
+</html>

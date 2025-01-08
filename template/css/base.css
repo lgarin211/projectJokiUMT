@@ -1,0 +1,47 @@
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../assets/base-background.png);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    position: relative;
+}
+
+#univLogo{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10%;
+}
+.content{
+    width: 50%;
+    height: 70%;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    background-color: #404040;
+    flex-direction: column;
+}
+
+#backToHome{
+    color: black;
+    position: absolute;
+    left: 3%;
+    top: 3%;
+    /* left: 50%;
+    bottom: 5%; */
+    /* background-color: rgba(198, 47, 47, 0.3); */
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+#backToHome:hover{
+    scale: 1.2;
+    transition: all 0.3s ease-in-out;
+}
