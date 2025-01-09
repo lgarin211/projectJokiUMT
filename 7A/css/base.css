@@ -1,47 +1,83 @@
-.wrapper{
-    width: 100vw;
-    height: 100vh;
-    background-image: url(../assets/base-background.png);
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-
-    position: relative;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-#univLogo{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 10%;
-}
-.content{
-    width: 50%;
-    height: 70%;
-    display: flex;
-    justify-content: center ;
-    align-items: center;
-    background-color: #404040;
-    flex-direction: column;
+.navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #4caf50;
+  /* Deep blue */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
-#backToHome{
-    color: black;
-    position: absolute;
-    left: 3%;
-    top: 3%;
-    /* left: 50%;
-    bottom: 5%; */
-    /* background-color: rgba(198, 47, 47, 0.3); */
-    border-radius: 10px;
-    transition: all 0.3s ease-in-out;
+.navbar-item {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
 }
 
-#backToHome:hover{
-    scale: 1.2;
-    transition: all 0.3s ease-in-out;
+.navbar-item img {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 5px;
+  filter: invert(100%) brightness(200%);
+  /* Makes PNG icons white */
+}
+
+.navbar-item:hover {
+  color: #ffcc00;
+  /* Highlight color on hover */
+}
+
+.content {
+  /* padding: 20px;
+  padding-bottom: 70px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* To ensure space for the navbar */
+}
+
+.top-bar{
+    background: linear-gradient(to right, #4caf50, #ffc107);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.top-bar img {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 5px;
+  filter: invert(100%) brightness(200%);
+  /* Makes PNG icons white */
+}
+
+.quiz img{
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+    filter: invert(0%) brightness(200%);
+}
+
+.navbar-item.active {
+  color: #ffcc00;
+}
+
+.navbar-item.active img {
+  filter: invert(50%) sepia(100%) saturate(300%) hue-rotate(40deg) brightness(100%);
+  /* Custom filter to indicate active state, adjust as needed */
+}
+
+body{
+  background: linear-gradient(to right, #ffc107, #4caf50);
+  /* add blur */
+  background-attachment: fixed;
 }

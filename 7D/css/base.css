@@ -7,7 +7,7 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #003366;
+  background: linear-gradient(to right, #003366,  #33adff);
   /* Deep blue */
   display: flex;
   justify-content: space-around;
@@ -43,7 +43,7 @@ body {
 }
 
 .top-bar{
-    background-color: #003366;
+    background: linear-gradient(to right, #003366,  #33adff);
     position: sticky;
     top: 0;
     z-index: 999;
@@ -62,4 +62,17 @@ body {
     height: 24px;
     margin-bottom: 5px;
     filter: invert(0%) brightness(200%);
+}
+
+.navbar-item.active {
+  color: #33adff;
+}
+
+.navbar-item.active img {
+  filter: invert(50%) sepia(100%) saturate(300%) hue-rotate(180deg) brightness(110%);
+  /* Adjust filter to match the color or emphasize the active state */
+}
+
+body{
+  background-color: rgb(246, 241, 241);
 }

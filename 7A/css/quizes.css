@@ -44,7 +44,7 @@
     height: 30%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
 
     overflow-y: scroll;
     gap: .3rem;
@@ -97,7 +97,7 @@
     align-items: center;
     margin-top: 10vh;
     /* Add box shadow */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); */
     border-radius: 10px;
     padding: 16px;
 }
