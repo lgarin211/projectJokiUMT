@@ -14,9 +14,12 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
             background: linear-gradient(135deg, #0066cc, #33adff);
             color: #fff;
             font-family: Arial, sans-serif;
+            transition: transform 0.6s ease-out;
+            /* Smooth swipe effect */
         }
 
         .landing-container {
@@ -70,37 +73,31 @@
         <img src="./assets/logo-univ.png" alt="University Logo" class="logo">
         <div class="title">Dr. Mawardi, S.S.I., M.Pd</div>
         <div class="subtitle">Universitas Muhammadiyah Tangerang</div>
-        <div class="swipe-hint">Slide left to continue &larr;</div>
+        <div class="swipe-hint">Geser ke kiri untuk melanjutkan &larr;</div>
     </div>
 
     <div class="overlay"></div>
 
     <script>
-        document.addEventListener('touchstart', handleTouchStart, false);
-        document.addEventListener('touchmove', handleTouchMove, false);
+        // Variables to track touch positions
+        let startX = 0;
+        let endX = 0;
 
-        let xDown = null;
+        // Add touchstart listener
+        document.addEventListener('touchstart', function (e) {
+            startX = e.touches[0].clientX;
+        });
 
-        function handleTouchStart(evt) {
-            const firstTouch = evt.touches[0];
-            xDown = firstTouch.clientX;
-        }
-
-        function handleTouchMove(evt) {
-            if (!xDown) {
-                return;
+        document.addEventListener('touchend', function (e) {
+            endX = e.changedTouches[0].clientX;
+            if (startX - endX > 50) { // Adjust sensitivity as needed
+                // Add swipe animation
+                document.body.style.transform = 'translateX(-100%)';
+                setTimeout(() => {
+                    window.location.href = 'home.html';
+                }, 600);
             }
-
-            let xUp = evt.touches[0].clientX;
-            let xDiff = xDown - xUp;
-
-            if (xDiff > 50) {
-                // Slide left
-                window.location.href = './home.html';
-            }
-
-            xDown = null;
-        }
+        });
     </script>
 </body>
 
