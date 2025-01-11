@@ -12,16 +12,18 @@
     <style>
         .slide {
             border-radius: 15px;
-            padding: 20px;
-            margin: 10px;
-            width: 85vw;
-            height: 25vh;
+            width: 80vw;
+            height: 95vh;
             background-position: center;
             background-repeat: no-repeat;
             background-size: 100%;
-            background-image: url('./assets/materi/materi5/1.jpg');
+            background-image: url('./assets/materi/materi5/1-min.jpg');
 
-            position: relative;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
         }
 
         .button-prev {
@@ -29,7 +31,7 @@
             top: 50%;
             left: 10px;
             transform: translateY(-50%);
-            color: darkblue;
+            color: #ffc107;
             display: none;
             opacity: 0.6;
         }
@@ -39,40 +41,37 @@
             top: 50%;
             right: 10px;
             transform: translateY(-50%);
-            color: darkblue;
+            color: #ffc107;
             opacity: 0.6;
         }
     </style>
 </head>
 
 <body>
-    <div class="top-bar d-flex align-items-center justify-content-between px-3 py-3 text-light border-bottom">
-        <button class="p-0 m-0" onclick="javascript:window.history.back()" style="background:none; border:none;">
-            <img src="./assets/icons/arrow-small-left.png" alt="Back" style="height: 25px; width: 25px; ">
-        </button>
-        <h5 class="m-0 flex-grow-1 text-center">Bab 5</h5>
-        <a href="#" style="opacity: 0;">
-            <img src="./assets/icons/arrow-small-left.png" alt="Back" style="height: 20px;">
+    <div class="side card-custom" style="left: 2%;">
+        <a href="./home.html" class="" style="">
+            <img class="side-icon" src="./assets/icons/home.png" alt="">
+        </a>
+        <a href="./profile.html" class="" style="">
+            <img class="side-icon" src="./assets/icons/user.png" alt="">
+        </a>
+        <a href="./transitionquiz5.html" class="" style="">
+            <img class="side-icon" src="./assets/icons/quiz-alt.png" alt="">
         </a>
     </div>
-
-    <div class="content py-3 pb-5">
-        <div class="container" style="overflow-y: scroll;">
+    <div class="content">
+        <div class="container">
             <div class="row d-flex align-items-center justify-content-center">
-                <div class="col-12">
-                    <h4>Instrumen Penelitian Tindakan Kelas</h4>
-                </div>
-                <legend class="border-bottom border-2" style="width: 95%;"></legend>
                 <div class="col-12 slide">
                     <span class="button-prev">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                             class="bi bi-caret-left-fill" viewBox="0 0 16 16">
                             <path
                                 d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
                         </svg>
                     </span>
                     <span class="button-next">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                             class="bi bi-caret-right-fill" viewBox="0 0 16 16">
                             <path
                                 d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
@@ -80,41 +79,20 @@
                     </span>
                 </div>
             </div>
-            <div class="d-flex flex-row-reverse">
-                <a class="btn btn-outline-primary te btn-sm" href="./transitionquiz1.html"
-                    style="text-decoration: none; width: 30%;">
-                    Quiz
-                </a>
-            </div>
         </div>
-    </div>
-
-    <div class="navbar">
-        <a href="./home.html" class="navbar-item">
-            <img src="./assets/icons/home.png" alt="Home">
-        </a>
-        <a href="./materi.html" class="navbar-item">
-            <img src="./assets/icons/book-alt.png" alt="Materi">
-        </a>
-        <a href="./quiz.html" class="navbar-item">
-            <img src="./assets/icons/memo-circle-check.png" alt="Tasks">
-        </a>
-        <a href="./profile.html" class="navbar-item">
-            <img src="./assets/icons/user.png" alt="Profile">
-        </a>
     </div>
 
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script>
-        let max = 5;
+        let max = 23;
         let count = 1;
         $(document).ready(function () {
             $('.button-prev').click(function () {
                 if (count > 1) {
                     count--;
                     $('.slide').css('background-image', 'url(./assets/materi/materi5/' + count +
-                        '.jpg)');
+                        '-min.jpg)');
                     $('.button-next').css('display', 'block');
                 }
 
@@ -129,7 +107,7 @@
                 if (count < max) {
                     count++;
                     $('.slide').css('background-image', 'url(./assets/materi/materi5/' + count +
-                        '.jpg)');
+                        '-min.jpg)');
                     $('.button-prev').css('display', 'block');
                 }
 
@@ -141,6 +119,7 @@
             });
         });
     </script>
+    <script src="js/validate_orientation.js"></script>
 </body>
 
 </html>

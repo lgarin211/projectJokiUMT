@@ -14,14 +14,16 @@
         rel="stylesheet">
 </head>
 <style>
-
-
-
+    body {
+        background: linear-gradient(to right, #ffc107, #4caf50);
+        /* add blur */
+        background-attachment: fixed;
+    }
 </style>
 
 <body>
-    <div class="container-fluid d-flex align-items-center justify-content-center">
-        <div class="wrapper mt-2">
+    <div class="container-fluid d-flex align-items-center justify-content-center" style="scale: 0.9">
+        <div class="wrapper" style="background: white;">
             <div class="quiz-title mt-2 d-flex flex-row w-100 justify-content-between">
                 <h4>Quiz 1 : Telaah Filosofis Ilmu Pengetahuan dan Penelitian Ilmiah</h4>
                 <h4 class="Waktu"></h4>
@@ -50,22 +52,22 @@
                 <button class="btn btn-outline-secondary option" value=3 id="option3"></button>
             </div>
             <div class="buttons-wrapper mt-1">
-                <button id="prev" class="btn btn-outline-secondary">Sebelumnya</button>
-                <button id="next" class="btn btn-outline-primary">Selanjutnya</button>
-                <button id="finish" class="btn btn-outline-warning">Selesai</button>
+                <button id="prev" class="btn btn-outline-danger ">Sebelumnya</button>
+                <button id="next" class="btn btn-outline-success">Selanjutnya</button>
+                <button id="finish" class="btn btn-outline-primary">Selesai</button>
             </div>
         </div>
-        <div class="wrapper-2 mt-2">
-            <h3>🎉 Kamu telah menyelesaikan kuis!.</h3>
+        <div class="wrapper-2 mt-2" style="background: white;">
+            <h3>Kuisnya sudah selesai!</h3>
             <div class="message">
-                Tekan tombol selesai dibawah skor untuk kembali ke halaman quiz.
+                Tekan tombol selesai dibawah skor untuk kembali ke halaman utama.
             </div>
 
             <div class="rating mt-4"></div>
             <div class="mt-2">
-                Skor kamu adalah <span id="infoSkor"></span>/100
+                Skor quiz kamu: <span id="infoSkor"></span>/100
             </div>
-            <a href="./quiz.html" class="btn btn-outline-success mt-2">Selesai</a>
+            <a href="./home.html" class="btn btn-outline-warning mt-2">Selesai</a>
         </div>
     </div>
 </body>
@@ -73,49 +75,169 @@
     var questionData = {
         "questions": {
             "0": "Apa yang dimaksud dengan ilmu pengetahuan?",
-            "1": "Metode ilmiah sering disebut juga dengan ...",
-            "2": "Perbedaan antara pengetahuan dan ilmu pengetahuan terletak pada ...",
-            "3": "Pada periode pertama perkembangan ilmu pengetahuan, analisis didasarkan pada ...",
-            "4": "Aristoteles membagi pengenalan menjadi ..."
+            "1": "Manakah dari berikut ini yang merupakan dua jenis definisi yang sering digunakan dalam ilmu pengetahuan?",
+            "2": "Definisi sejati dapat diklasifikasikan dalam kategori berikut, kecuali:",
+            "3": "Definisi 'nir sejati' dapat dibedakan menjadi dua, yaitu:",
+            "4": "Ilmu pengetahuan dapat dipertanggungjawabkan melalui tiga macam sistem. Manakah dari berikut ini yang bukan merupakan salah satu sistem tersebut ? ",
+            "5" : "Apa yang merupakan tugas utama dari penelitian?",
+            "6": "Dalam konteks pengembangan cabang pengetahuan, mengapa filsafat dan agama dianggap penting?",
+            "7": "Menurut Avery 2006 ada 4 cara bagaimana mengetahui sesuatu yang berlandaskan metode ilmiah, kecuali?",
+            "8": "Apa sarana berpikir ilmiah?",
+            "9": "Apa langkah pertama yang biasanya dilakukan dalam proses penelitian ilmiah?",
+            "10": "Sistem yang membuktikan kebenaran suatu fenomena mulai dari kaidah umum menuju khusus disebut sistem ....",
+            "11": "Pada periode pertama perkembangan ilmu pengetahuan, ilmu pengetahuan bersifat .....",
+            "12": "Pandangan Rene Descartes (1596 – 1650) pada periode kedua perkembangan ilmu pengetahuan terkenal ungkapan Cogito Ergo Sum yang memiliki arti....",
+            "13": "Ilmu pengetahuan itu merupakan pengalaman terhadap fakta, tetapi merupakan hasil konstruksi oleh rasio. Kalimat ini merupakan pandangan....",
+            "14": "Manakah di antara berikut ini yang termasuk ciri-ciri dari ilmu pengetahuan ilmiah?",
+            "15": "Ilmu pengetahuan ilmiah dapat dipertanggungjawabkan melalui 3 macam sistem salah satunya adalah ...",
+            "16": "Avery (2006) menyebutkan terdapat empat cara mendasar untuk mencari tahu sesuatu secara ilmiah, yakni, kecuali....",
+            "17": "Dari contoh pola baku probalistik terlahirlah ilmu pengetahuan yang dikenal dengan ....",
+            "18": "Apabila Aristoteles pada periode pertama perkembangan ilmu pengetahuan ilmiah memiliki cara berpikir yangbersifat ontologis, maka pada periode kedua Galileo memiliki cara berpikir bersifat....",
+            "19": "Ilmu pengetahuan merupakan sekumpulan pengetahuan dalam bidang tertentu yang disusun secara ...."
         },
         "options": {
             "0": [
-                "a. Kumpulan mitos dan cerita rakyat",
-                "b. Pengetahuan yang tersusun sistematis melalui metode ilmiah",
-                "c. Cerita yang diwariskan secara turun temurun",
-                "d. Persepsi manusia tentang dunia"
+                "a. Kumpulan informasi yang tidak terstruktur dan tidak dapat diuji.",
+                "b. Sekumpulan pengetahuan yang tersusun secara sistematis dan runtut melalui metode ilmiah.",
+                "c. Hasil dari pemikiran pribadi yang tidak memerlukan bukti atau fakta.",
+                "d. Sebuah teori yang tidak dapat dibuktikan dan hanya berdasarkan asumsi."
             ],
             "1": [
-                "a. Metode tradisional",
-                "b. Metode praktis",
-                "c. Prosedur sistematis untuk mendapatkan pengetahuan",
-                "d. Cara intuitif memahami fenomena"
+                "a. Definisi eksplisit dan definisi implisit.",
+                "b. Definisi sejati dan definisi nir-sejati.",
+                "c. Definisi formal dan definisi informal.",
+                "d. Definisi teoritis dan definisi praktis."
             ],
             "2": [
-                "a. Pengetahuan bersifat sistematis, ilmu tidak",
-                "b. Pengetahuan berasal dari penelitian ilmiah",
-                "c. Ilmu pengetahuan disusun sistematis dan menggunakan metode ilmiah",
-                "d. Ilmu pengetahuan tidak dapat diajarkan"
+                "a. Definisi operasional.",
+                "b. Definisi kontekstual.",
+                "c. Definisi leksikal.",
+                "d. Definisi stipulative."
             ],
             "3": [
-                "a. Kepercayaan terhadap mitos",
-                "b. Persepsi rasional dan logos",
-                "c. Keberadaan laboratorium",
-                "d. Fakta kuantitatif"
+                "a. Definisi Ostensif dan Definisi persuasif.",
+                "b. Definisi Deskriptif dan Definisi Normatif.",
+                "c. Definisi Formal dan Definisi Informal.",
+                "d. Definisi Pragmatis dan Definisi Teoritis."
             ],
             "4": [
-                "a. Rasional dan empiris",
-                "b. Inderawi dan rasional",
-                "c. Objektif dan subjektif",
-                "d. Abstrak dan konkret"
+                "a. Sistem Empiris.",
+                "b. Sistem axiomatis.",
+                "c. Sistem Fiksi.",
+                "d. Sistem semantic."
+            ],
+            "5": [
+                "a. Mengumpulkan data tanpa analisis.",
+                "b. Menyusun laporan tanpa referensi.",
+                "c. Menyusun dan menguji keabsahan teori tersebut.",
+                "d. Mengulangi penelitian yang sudah ada sebelumnya."
+            ],
+            "6": [
+                "a. Karena filsafat dan agama tidak memiliki pengaruh terhadap ilmu pengetahuan.",
+                "b. Karena filsafat memberikan dasar pemikiran kritis dan etika, sementara agama menawarkan perspektif moral dan spiritual.",
+                "c. Karena filsafat dan agama hanya berfungsi sebagai penghalang bagi kemajuan ilmu pengetahuan",
+                "d. Karena keduanya hanya berkaitan dengan sejarah dan tidak relevan dengan cabang pengetahuan lainnya."
+            ],
+            "7": [
+                "a. Method of tenacity.",
+                "b. Method of authority.",
+                "c. Method of ontology.",
+                "d. Apriori method."
+            ],
+            "8": [
+                "a. Bahasa.",
+                "b. Observasi.",
+                "c. Dokumentasi.",
+                "d. Wawancara."
+            ],
+            "9": [
+                "a. Mengumpulkan data.",
+                "b. Menyusun hipotesis.",
+                "c. Menentukan masalah penelitian.",
+                "d. Menganalisis hasil."
+            ],
+            "10": [
+                "a. Sistem tertutup.",
+                "b. Sistem empiris.",
+                "c. Sistem axiomatis.",
+                "d. Sistem linguistik."
+            ],
+            "11": [
+                "a. Dinamis.",
+                "b. Sistematis.",
+                "c. Sosiologis.",
+                "d. Ontologis."
+            ],
+            "12": [
+                "a. Karena aku berpikir maka aku ada.",
+                "b. Karena ada maka jadi tidak ada.",
+                "c. Sebelum tidak ada pasti ada.",
+                "d. Karena aku ada maka aku berpikir."
+            ],
+            "13": [
+                "a. Immanuel Kant.",
+                "b. Aristoteles.",
+                "c. Rene Descartes.",
+                "d. Galileo."
+            ],
+            "14": [
+                "a. Tertutup.",
+                "b. Terbuka.",
+                "c. Objektif.",
+                "d. Operasional."
+            ],
+            "15": [
+                "a. Sistematis.",
+                "b. Sistem terbuka.",
+                "c. Sistem tertutup.",
+                "d. Sistem empiris."
+            ],
+            "16": [
+                "a. Method of tenacity.",
+                "b. Method of authority.",
+                "c. Apriori method.",
+                "d. Metode deskriptif."
+            ],
+            "17": [
+                "a. Statistika.",
+                "b. Matematika peminatan.",
+                "c. Klimatologi.",
+                "d. Psikologi."
+            ],
+            "18": [
+                "a. Metafisis.",
+                "b. Abstraksi.",
+                "c. Realistis.",
+                "d. Analisis."
+            ],
+            "19": [
+                "a. Sistematis.",
+                "b. Ilmiah.",
+                "c. Subjektif.",
+                "d. Objektif."
             ]
         },
         "answers": {
             "0": 1,
-            "1": 2,
-            "2": 2,
-            "3": 1,
-            "4": 1
+            "1": 1,
+            "2": 1,
+            "3": 0,
+            "4": 2,
+            "5": 2,
+            "6": 1,
+            "7": 2,
+            "8": 0,
+            "9": 2,
+            "10": 2,
+            "11": 3,
+            "12": 0,
+            "13": 0,
+            "14": 2,
+            "15": 3,
+            "16": 3,
+            "17": 2,
+            "18": 3,
+            "19": 0
         }
     };
 </script>

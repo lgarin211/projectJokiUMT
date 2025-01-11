@@ -42,14 +42,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
   /* To ensure space for the navbar */
 }
 
-.top-bar{
-    background: linear-gradient(to right, #4caf50, #ffc107);
-    position: sticky;
-    top: 0;
-    z-index: 999;
+.top-bar {
+  background: linear-gradient(to right, #4caf50, #ffc107);
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .top-bar img {
@@ -60,11 +61,11 @@ body {
   /* Makes PNG icons white */
 }
 
-.quiz img{
-    width: 24px;
-    height: 24px;
-    margin-bottom: 5px;
-    filter: invert(0%) brightness(200%);
+.quiz img {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 5px;
+  filter: invert(0%) brightness(200%);
 }
 
 .navbar-item.active {
@@ -72,12 +73,53 @@ body {
 }
 
 .navbar-item.active img {
-  filter: invert(50%) sepia(100%) saturate(300%) hue-rotate(40deg) brightness(100%);
+  filter: invert(50%) sepia(100%) saturate(300%) hue-rotate(40deg)
+    brightness(100%);
   /* Custom filter to indicate active state, adjust as needed */
 }
 
-body{
+body {
   background: linear-gradient(to right, #ffc107, #4caf50);
   /* add blur */
   background-attachment: fixed;
+}
+
+.card-custom {
+  /* Adds a blur effect */
+  background-color: rgba(255, 255, 255, 0.2);
+  /* White background with 20% opacity */
+  border-radius: 10px;
+  /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  overflow: hidden;
+  /* Ensures content stays within rounded borders */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  /* Subtle border */
+  /* Inner spacing */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.side {
+  width: 5%;
+  position: fixed;
+  z-index: 1;
+  position: absolute;
+  top: 5%;
+  left: 1%;
+  padding: 10px 25px 10px 25px;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-icon {
+  width: 4.5vw;
+  height: 4.5vw;
+  filter: invert(1);
+}
+::-webkit-scrollbar {
+    display: none;
 }

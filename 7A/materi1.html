@@ -17,13 +17,13 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: 100%;
-            background-image: url('./assets/materi/materi1/1.jpg');
+            background-image: url('./assets/materi/materi1/1-min.jpg');
 
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            
+
         }
 
         .button-prev {
@@ -48,15 +48,21 @@
 </head>
 
 <body>
-
+    <div class="side card-custom" style="left: 2%;">
+        <a href="./home.html" class="" style="">
+            <img class="side-icon" src="./assets/icons/home.png" alt="">
+        </a>
+        <a href="./profile.html" class="" style="">
+            <img class="side-icon" src="./assets/icons/user.png" alt="">
+        </a>
+        <a href="./transitionquiz1.html" class="" style="">
+            <img class="side-icon" src="./assets/icons/quiz-alt.png" alt="">
+        </a>
+    </div>
     <div class="content">
         <div class="container">
             <div class="row d-flex align-items-center justify-content-center">
-                <!-- <div class="col-12">
-                    <h4>Bab 1: Telaah Filosofis Ilmu Pengetahuan dan Penelitian Ilmiah</h4>
-                </div>
-                <legend class="border-bottom border-2" style="width: 100%;"></legend> -->
-                <div class="col-12 slide" >
+                <div class="col-12 slide">
                     <span class="button-prev">
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
                             class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -79,14 +85,14 @@
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script>
-        let max = 6;
+        let max = 18;
         let count = 1;
         $(document).ready(function () {
             $('.button-prev').click(function () {
                 if (count > 1) {
                     count--;
                     $('.slide').css('background-image', 'url(./assets/materi/materi1/' + count +
-                        '.jpg)');
+                        '-min.jpg)');
                     $('.button-next').css('display', 'block');
                 }
 
@@ -101,7 +107,7 @@
                 if (count < max) {
                     count++;
                     $('.slide').css('background-image', 'url(./assets/materi/materi1/' + count +
-                        '.jpg)');
+                        '-min.jpg)');
                     $('.button-prev').css('display', 'block');
                 }
 
@@ -113,6 +119,7 @@
             });
         });
     </script>
+    <script src="js/validate_orientation.js"></script>
 </body>
 
 </html>
