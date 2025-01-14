@@ -11,7 +11,7 @@ var to_add_to_body = `<div class="forceLandscape"  style="display: none;
         text-align: center;
         align-items: center;
         font-size: 2rem;">
-    <img src="./assets/rotate-phone.jpg" style="width: 100vw; margin-top: 20px;">
+    <img src="./assets/rotate-phone.gif" style="width: 100vw; margin-top: 20px;">
 </div>`
 $("body").append(to_add_to_body);
 $(document).ready(function () {
