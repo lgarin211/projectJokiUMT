@@ -1,0 +1,29 @@
+
+
+.content{
+    background-image: url(../assets/start/base-background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.start-button{
+    position: absolute;
+    left: 50%;
+    bottom: 1.5%;
+    transform: translateX(-50%);
+    width: 15%;
+}
+
+.start-button img{
+    width: 100%;
+}
+
+.start-button img:hover{
+    cursor: pointer;
+    scale: 1.1;
+}
