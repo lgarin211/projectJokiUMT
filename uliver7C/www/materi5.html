@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilmu Pendidikan</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <style>
+        .content {
+            display: none;
+        }
+
+        .wrapper {
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 100vw;
+            height: 100vh;
+            background-size: 82%;
+            background-image: url(./assets/materi5/KELOMPOK\ 5_PTK\ -1-min.jpg);
+
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content mb-4">
+        </div>
+        <button id="backToHome" style="border: none; background: none;" onclick="window.history.back();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                <path
+                    d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+            </svg>
+        </button>
+        <div class="d-flex w-100 justify-content-between">
+            <span class="button-prev" style="color: rgb(255, 130, 130);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" fill="currentColor"
+                    class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                    <path
+                        d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                </svg>
+            </span>
+            <span class="button-next" style="color: rgba(255, 130, 130);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" fill="currentColor"
+                    class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                    <path
+                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                </svg>
+            </span>
+        </div>
+        <img id="univLogo" src="./assets/logo-univ.png" alt="">
+    </div>
+</body>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script>
+    $(document).ready(function () {
+        let count = 1;
+        const max = 21;
+        const basePath = "./assets/materi5/KELOMPOK%205_PTK%20-";
+        const ext = "-min.jpg";
+
+        function updateBackground() {
+            $('.wrapper').css('background-image', `url(${basePath}${count}${ext})`);
+            updateButtonStates();
+        }
+
+        function updateButtonStates() {
+            if (count <= 1) {
+                $('.button-prev').css('color', 'rgba(255, 130, 130, 0.5)');
+            } else {
+                $('.button-prev').css('color', 'rgb(255, 130, 130)');
+            }
+
+            if (count >= max) {
+                $('.button-next').css('color', 'rgba(255, 130, 130, 0.5)');
+            } else {
+                $('.button-next').css('color', 'rgb(255, 130, 130)');
+            }
+        }
+
+        // Initialize background and button states
+        updateBackground();
+
+        $('.button-prev').click(function () {
+            if (count > 1) {
+                count--;
+                updateBackground();
+            }
+        });
+
+        $('.button-next').click(function () {
+            if (count < max) {
+                count++;
+                updateBackground();
+            }
+        });
+    });
+</script>
+
+<script src="./js/validate_orientation.js"></script>
+
+</html>
