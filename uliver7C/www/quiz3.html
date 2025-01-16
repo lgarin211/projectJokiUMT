@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilmu Pendidikan</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/quizes.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,700;0,800;0,900;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+<style>
+
+
+
+</style>
+
+<body>
+    <div class="container-fluid d-flex align-items-center justify-content-center" style="scale: 0.9;">
+        <div class="wrapper mt-2">
+            <div class="quiz-title mt-2 d-flex flex-row w-100 justify-content-between">
+                <h4>Quiz 3: Hakikat Penelitian Tindakan Kelas</h4>
+                <h4 class="Waktu"></h4>
+            </div>
+            <div id="progress-bar-container" class="mt-2">
+                <div class="progress-bar-title">
+                    <div class="progress-bar-title-text">Kemajuan Quiz: </div>
+                    <div class="progress-bar-title-text">Pertanyaan <span class="current-question">1</span> dari <span
+                            id="totalQuestion"></span></div>
+                </div>
+                <div id="progress-bar" class="progress mt-1">
+                    <div class="progress-bar my-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <div class="quiz-question-number mt-3">Pertanyaan <span class="current-question">1</span></div>
+                <div class="question-text-wrapper">
+                    <h5 id="question-text">Istilah pedagogia berasal dari bahasa</h5>
+                </div>
+            </div>
+            <div class="options d-grid">
+                <button class="btn btn-outline-secondary option" value=0 id="option0"></button>
+                <button class="btn btn-outline-secondary option" value=1 id="option1"></button>
+                <button class="btn btn-outline-secondary option" value=2 id="option2"></button>
+                <button class="btn btn-outline-secondary option" value=3 id="option3"></button>
+            </div>
+            <div class="buttons-wrapper mt-1">
+                <button id="prev" class="btn btn-secondary">Sebelumnya</button>
+                <button id="next" class="btn btn-info">Selanjutnya</button>
+                <button id="finish" class="btn btn-warning">Selesai</button>
+            </div>
+        </div>
+        <div class="wrapper-2 mt-2">
+            <h3>Kamu telah menyelesaikan kuis.</h3>
+            <div class="message">
+                Harap tekan tombol selesai untuk kembali ke halaman quiz.
+            </div>
+
+            <div class="rating mt-4"></div>
+            <div class="mt-2">
+                Skor kamu adalah <span id="infoSkor"></span>/100
+            </div>
+            <a href="./quiz.html" class="btn btn-outline-success mt-2">Selesai</a>
+        </div>
+    </div>
+</body>
+<script>
+    var questionData = {
+  "questions": {
+    "0": "Siapakah tokoh yang pertama kali memperkenalkan konsep penelitian tindakan kelas (PTK)?",
+    "1": "Kemmis dan Taggart mengembangkan model PTK berbasis pada siklus. Apa saja langkah dalam siklus ini?",
+    "2": "John Elliot mengembangkan PTK untuk meningkatkan...",
+    "3": "Clem Adelman berkontribusi pada PTK dengan menekankan...",
+    "4": "Konsep dasar PTK yang diperkenalkan oleh Kurt Lewin menekankan pada siklus yang...",
+    "5": "Penelitian Tindakan Kelas adalah metode penelitian yang bertujuan untuk...",
+    "6": "PTK melibatkan guru sebagai...",
+    "7": "Prinsip utama PTK adalah...",
+    "8": "Prinsip kolaborasi dalam PTK berarti...",
+    "9": "Karakteristik utama PTK meliputi semua berikut ini, kecuali...",
+    "10": "Salah satu karakteristik PTK adalah prosesnya yang bersiklus. Artinya...",
+    "11": "Manfaat utama PTK bagi guru adalah...",
+    "12": "Manfaat PTK untuk siswa adalah...",
+    "13": "Apa tujuan utama PTK menurut Kemmis dan Taggart?",
+    "14": "Siklus dalam PTK membantu guru untuk...",
+    "15": "Mengapa PTK dianggap sebagai penelitian yang partisipatif?",
+    "16": "Langkah pertama dalam penelitian tindakan kelas menurut model Kemmis dan Taggart adalah...",
+    "17": "Menurut Kurt Lewin, penelitian tindakan bertujuan untuk...",
+    "18": "Ciri khas dari pendekatan yang digunakan oleh John Elliot dalam PTK adalah...",
+    "19": "Apa fungsi utama refleksi dalam siklus PTK?"
+  },
+  "options": {
+    "0": ["a. Kemmis dan Taggart", "b. Kurt Lewin", "c. John Elliot", "d. Clem Adelman"],
+    "1": ["a. Perencanaan, tindakan, observasi, refleksi", "b. Tindakan, evaluasi, revisi, implementasi", "c. Penelitian, analisis, tindakan, revisi", "d. Penilaian, refleksi, pengembangan, tindakan"],
+    "2": ["a. Pengetahuan guru tentang kurikulum", "b. Praktik pengajaran guru di kelas", "c. Sistem penilaian berbasis kompetensi", "d. Model pembelajaran berbasis proyek"],
+    "3": ["a. Teori pendidikan berbasis praktik", "b. Pentingnya kolaborasi guru dalam penelitian", "c. Sistem dokumentasi visual dalam penelitian", "d. Evaluasi pembelajaran berbasis data"],
+    "4": ["a. Berulang dan sistematis", "b. Linear dan terstruktur", "c. Eksploratif dan inovatif", "d. Formal dan evaluatif"],
+    "5": ["a. Menguji teori-teori baru di laboratorium", "b. Meningkatkan praktik pembelajaran di kelas", "c. Membandingkan hasil pembelajaran antar siswa", "d. Mengembangkan metode penilaian siswa"],
+    "6": ["a. Fasilitator pembelajaran", "b. Peneliti dalam kelasnya sendiri", "c. Evaluator kurikulum", "d. Instruktur pembelajaran inovatif"],
+    "7": ["a. Kolaborasi antara guru dan peneliti", "b. Peningkatan hasil belajar siswa", "c. Implementasi metode pengajaran baru", "d. Refleksi dan evaluasi terus-menerus"],
+    "8": ["a. Guru harus bekerja sendiri untuk memahami masalah di kelasnya", "b. Guru bekerja sama dengan rekan guru atau pihak lain", "c. Penelitian dilakukan oleh tim pengembang kurikulum", "d. Pengembangan metode belajar yang seragam"],
+    "9": ["a. Bersifat sistematis", "b. Dilakukan di luar kelas", "c. Berorientasi pada pemecahan masalah", "d. Berlangsung dalam siklus"],
+    "10": ["a. Dilakukan dalam urutan langkah tertentu dan diulang hingga hasil optimal dicapai", "b. Tidak perlu ada langkah berurutan", "c. Semua proses dilakukan sekaligus tanpa refleksi", "d. Fokus pada satu langkah saja"],
+    "11": ["a. Meningkatkan penghasilan", "b. Meningkatkan keterampilan mengajar", "c. Meningkatkan kemampuan siswa di luar sekolah", "d. Membantu siswa memahami kurikulum"],
+    "12": ["a. Mendapatkan materi pelajaran tambahan", "b. Meningkatkan pemahaman melalui metode yang efektif", "c. Belajar di luar kelas lebih sering", "d. Mendapatkan lebih banyak ujian praktik"],
+    "13": ["a. Menguji teori pendidikan", "b. Memecahkan masalah nyata di kelas", "c. Membandingkan hasil penelitian lain", "d. Mengembangkan teknologi pembelajaran"],
+    "14": ["a. Meningkatkan metode penilaian siswa", "b. Refleksi dan pengembangan terus-menerus", "c. Mengganti kurikulum sekolah", "d. Melatih siswa untuk penelitian akademis"],
+    "15": ["a. Karena melibatkan siswa secara langsung", "b. Karena melibatkan guru dan pihak terkait dalam prosesnya", "c. Karena dilaksanakan oleh tim ahli pendidikan", "d. Karena dilakukan secara independen oleh guru"],
+    "16": ["a. Refleksi", "b. Observasi", "c. Perencanaan", "d. Tindakan"],
+    "17": ["a. Mengembangkan teori-teori sosial", "b. Mengubah perilaku sosial melalui proses tindakan langsung", "c. Membantu siswa memahami materi pembelajaran", "d. Meningkatkan kemampuan literasi siswa"],
+    "18": ["a. Fokus pada perubahan kurikulum", "b. Refleksi mendalam terhadap praktik pengajaran", "c. Mengembangkan strategi belajar mandiri", "d. Implementasi metode pembelajaran inovatif"],
+    "19": ["a. Mengumpulkan data hasil belajar siswa", "b. Menilai keberhasilan tindakan yang dilakukan", "c. Mencari metode pengajaran baru", "d. Mengganti rencana awal penelitian"]
+  },
+  "answers": {
+    "0": 1,
+    "1": 0,
+    "2": 1,
+    "3": 1,
+    "4": 0,
+    "5": 1,
+    "6": 1,
+    "7": 3,
+    "8": 1,
+    "9": 1,
+    "10": 0,
+    "11": 1,
+    "12": 1,
+    "13": 1,
+    "14": 1,
+    "15": 1,
+    "16": 2,
+    "17": 1,
+    "18": 1,
+    "19": 1
+  }
+}
+
+</script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script>
+    function calc_score(user_answers) {
+        let score = 0;
+        for (let i = 0; i < user_answers.length; i++) {
+            if (user_answers[i] == questionData.answers[i]) {
+                score++;
+            }
+        }
+        return Math.floor(score / user_answers.length * 100);
+    }
+
+    $(document).ready(function () {
+        var current_index = 0;
+        var total_question = Object.keys(questionData.questions).length;
+        console.log(total_question);
+        var current_check = -1;
+        var user_answers = [];
+        for (let i = 0; i < total_question; i++) {
+            user_answers.push(-1);
+        }
+        // place the first question to the page
+        $('#question-text').text(questionData.questions[current_index]);
+        $('#option0').text(questionData.options[current_index][0]);
+        $('#option1').text(questionData.options[current_index][1]);
+        $('#option2').text(questionData.options[current_index][2]);
+        $('#option3').text(questionData.options[current_index][3]);
+        $('#totalQuestion').text(total_question);
+
+        $('.option').on('click', function () {
+            user_answers[current_index] = $(this).val();
+            $('.option').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        $('#next').on('click', function () {
+            $('.option').removeClass('active');
+            $('#prev').css('display', 'block');
+            current_index++;
+            if (current_index == total_question - 1) {
+                $('#next').css('display', 'none');
+                $('#finish').css('display', 'block');
+            }
+            $('#question-text').text(questionData.questions[current_index]);
+            $('#option0').text(questionData.options[current_index][0]);
+            $('#option1').text(questionData.options[current_index][1]);
+            $('#option2').text(questionData.options[current_index][2]);
+            $('#option3').text(questionData.options[current_index][3]);
+            $('.current-question').text(current_index + 1);
+
+            if (user_answers[current_index] != -1) {
+                $('.option').eq(user_answers[current_index]).addClass('active');
+            } else {
+                $('.option').removeClass('active');
+            }
+            // make progress bar arial-valuenow increase
+            let progress = (current_index + 1) / total_question * 100;
+            $('.my-bar').css('width', progress + '%');
+
+        });
+
+        $('#prev').on('click', function () {
+            $('.option').removeClass('active');
+            $('#next').css('display', 'block');
+            $('#finish').css('display', 'none');
+            current_index--;
+            if (current_index == 0) {
+                $('#prev').css('display', 'none');
+            }
+            $('#question-text').text(questionData.questions[current_index]);
+            $('#option0').text(questionData.options[current_index][0]);
+            $('#option1').text(questionData.options[current_index][1]);
+            $('#option2').text(questionData.options[current_index][2]);
+            $('#option3').text(questionData.options[current_index][3]);
+            $('.current-question').text(current_index + 1);
+
+            if (user_answers[current_index] != -1) {
+                $('.option').eq(user_answers[current_index]).addClass('active');
+            } else {
+                $('.option').removeClass('active');
+            }
+            let progress = (current_index + 1) / total_question * 100;
+            $('.my-bar').css('width', progress + '%');
+        });
+
+        $('#finish').on('click', function () {
+            $('.wrapper').css('display', 'none');
+            $('.wrapper-2').css('display', 'flex');
+            let score = calc_score(user_answers);
+            $('.rating').text(score + '%');
+            const ratings = document.querySelectorAll(".rating");
+            $('#infoSkor').text(score);
+
+            // Iterate over all rating items
+            ratings.forEach((rating) => {
+                // Get content and get score as an int
+                const ratingContent = rating.innerHTML;
+                const ratingScore = parseInt(ratingContent, 10);
+
+                // Define if the score is good, meh or bad according to its value
+                const scoreClass =
+                    ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
+
+                // Add score class to the rating
+                rating.classList.add(scoreClass);
+
+                // After adding the class, get its color
+                const ratingColor = window.getComputedStyle(rating).backgroundColor;
+
+                // Define the background gradient according to the score and color
+                const gradient =
+                    `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
+
+                // Set the gradient as the rating background
+                rating.setAttribute("style", gradient);
+
+                // Wrap the content in a tag to show it above the pseudo element that masks the bar
+                rating.innerHTML = `<span>${ratingScore} ${ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
+                    }</span>`;
+            });
+        });
+        var time = 1800;
+        var timer = setInterval(function () {
+            time--;
+            var minutes = Math.floor(time / 60);
+            var seconds = time - minutes * 60;
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            $(".Waktu").html(minutes + ":" + seconds);
+            if (time == 0) {
+                clearInterval(timer);
+                $('.wrapper').css('display', 'none');
+                $('.wrapper-2').css('display', 'flex');
+                let score = calc_score(user_answers);
+                $('.rating').text(score + '%');
+                const ratings = document.querySelectorAll(".rating");
+                $('#infoSkor').text(score);
+
+                // Iterate over all rating items
+                ratings.forEach((rating) => {
+                    // Get content and get score as an int
+                    const ratingContent = rating.innerHTML;
+                    const ratingScore = parseInt(ratingContent, 10);
+
+                    // Define if the score is good, meh or bad according to its value
+                    const scoreClass =
+                        ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
+
+                    // Add score class to the rating
+                    rating.classList.add(scoreClass);
+
+                    // After adding the class, get its color
+                    const ratingColor = window.getComputedStyle(rating).backgroundColor;
+
+                    // Define the background gradient according to the score and color
+                    const gradient =
+                        `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
+
+                    // Set the gradient as the rating background
+                    rating.setAttribute("style", gradient);
+
+                    // Wrap the content in a tag to show it above the pseudo element that masks the bar
+                    rating.innerHTML = `<span>${ratingScore} ${ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
+                        }</span>`;
+                });
+            }
+        }, 1000);
+    });
+</script>
+<script src="./js/block_back.js"></script>
+<!-- <script src="./js/validate_orientation.js"></script> -->
+
+</html>

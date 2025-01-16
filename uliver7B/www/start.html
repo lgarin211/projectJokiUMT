@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Page</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            transition: transform 0.6s ease-out;
+            /* Smooth swipe effect */
+            position: relative;
+        }
+
+        .landing-container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.6s ease-out;
+        }
+
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .swipe-hint {
+            font-size: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .background {
+            position: absolute;
+            inset: 0;
+            background: url('./assets/base-background.png') no-repeat center center/cover;
+            filter: blur(10px);
+            z-index: 1;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background"></div>
+    <div class="overlay"></div>
+    <div class="landing-container">
+        <img src="./assets/logo-univ.png" alt="University Logo" class="logo">
+        <div class="title">Dr. Mawardi, S.S.I., M.Pd</div>
+        <div class="subtitle">Universitas Muhammadiyah Tangerang</div>
+        <div class="swipe-hint">Geser ke atas untuk melanjutkan &uarr;</div>
+    </div>
+
+    <script>
+        // Variables to track touch positions
+        let startY = 0;
+        let endY = 0;
+
+        // Add touchstart listener
+        document.addEventListener('touchstart', function (e) {
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', function (e) {
+            endY = e.changedTouches[0].clientY;
+            if (startY - endY > 50) { // Detect swipe up gesture
+                // Add swipe animation only to the content, not the background
+                document.querySelector('.landing-container').style.transform = 'translateY(-100%)';
+                setTimeout(() => {
+                    window.location.href = 'home.html';
+                }, 600);
+            }
+        });
+    </script>
+    <script src="./js/validate_orientation.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilmu Pendidikan</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/profile.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper" style="background-color: none;">
+        <div class="content mb-4" style="background-position: center; background-color: rgba(0,0,0,0);">
+            <h3>TIM KAMI : 7B</h3>
+            <div class="inner-content">
+            </div>
+        </div>
+        <button id="backToHome" style="border: none; background: none;" onclick="window.location.href = './home.html';">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                <path
+                    d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+            </svg>
+        </button>
+        <img id="univLogo" src="./assets/logo-univ.png" alt="">
+    </div>
+</body>
+<script>
+    var students = {
+        "0": ["2186206103", "Abdul Mughni"],
+        "1": ["2186206056", "Anis Ayumi"],
+        "2": ["2186206064", "Ardita Puspita Sari"],
+        "3": ["2186206072", "Aura Luthfia Saharani"],
+        "4": ["2186206013", "Azka Dewi Anggita"],
+        "5": ["2186206043", "Chika Meiliana Putri"],
+        "6": ["2186206069", "Dhea Nuraulia"],
+        "7": ["2186206191", "Dhila Shafirra Aziz"],
+        "8": ["2186206075", "Farasyanti Azahratul Aini"],
+        "9": ["2186206073", "Fazri Nusaibah"],
+        "10": ["2186206079", "Ferdian Putra Wardhana"],
+        "11": ["2186206042", "Friska Ammallya G"],
+        "12": ["2186206068", "Lilis Sundari"],
+        "13": ["2186206125", "Mia Alfiatun Najah"],
+        "14": ["2186206051", "Nabila Putri Pertiwi"],
+        "15": ["2186206065", "Nabilah Aulia"],
+        "16": ["2186206049", "Nabilla Oktaviani Rizki"],
+        "17": ["2186206033", "Nuh Ahya Kamilatun"],
+        "18": ["2186206011", "Nuryati Widya Ningrum Ginting"],
+        "19": ["2186206057", "Qiromah Fadiniyah"],
+        "20": ["2186206181", "Sahla Sabilah"],
+        "21": ["2186206132", "Salsa Nabila Rahma"],
+        "22": ["2186206212", "Putri Yeni"],
+        "23": ["2186206066", "Wardatul Munaroh"],
+        "24": ["2186206067", "Wilda Widiati"]
+    }
+</script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script>
+    function init_student() {
+        const sortedStudents = Object.values(students).sort((a, b) => a[1].localeCompare(b[1]));
+
+        for (let i = 0; i < sortedStudents.length; i++) {
+            const element = sortedStudents[i];
+            students[i] = element;
+            $(".inner-content").append(`
+                <div class="student-wrapper mb-2">
+                    <input class="student-num" value="${i+1}." type="text" disabled>
+                    <input type="text" name="name" id="name" value="${element[1]}" disabled >
+                    <input type="text" name="nim" id="nim" value="${element[0]}" disabled>
+                </div>
+            `);
+        }
+    }
+    $(document).ready(() => {
+        init_student();
+    });
+</script>
+<script src="./js/validate_orientation.js"></script>
+
+</html>

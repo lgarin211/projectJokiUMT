@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/accordion.css">
+    <style>
+        .slide {
+            border-radius: 15px;
+            width: 80vw;
+            height: 95vh;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-image: url('./assets/materi/materi3/1-min.jpg');
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+
+        .button-prev {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #ffc107;
+            display: none;
+            opacity: 0.6;
+        }
+
+        .button-next {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: #ffc107;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="side card-custom" style="left: 2%;">
+        <a href="./home.html" class="" style="">
+            <img class="side-icon" src="./assets/icons/home.png" alt="">
+        </a>
+        <a href="./profile.html" class="" style="">
+            <img class="side-icon" src="./assets/icons/user.png" alt="">
+        </a>
+        <a href="./transitionquiz3.html" class="" style="">
+            <img class="side-icon" src="./assets/icons/quiz-alt.png" alt="">
+        </a>
+    </div>
+    <div class="content">
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-12 slide">
+                    <span class="button-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                            class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                            <path
+                                d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                        </svg>
+                    </span>
+                    <span class="button-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                            class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                            <path
+                                d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script>
+        let max = 11;
+        let count = 1;
+        $(document).ready(function () {
+            $('.button-prev').click(function () {
+                if (count > 1) {
+                    count--;
+                    $('.slide').css('background-image', 'url(./assets/materi/materi3/' + count +
+                        '-min.jpg)');
+                    $('.button-next').css('display', 'block');
+                }
+
+                if (count == 1) {
+                    $('.button-prev').css('display', 'none');
+                } else {
+                    $('.button-prev').css('display', 'block');
+                }
+            });
+
+            $('.button-next').click(function () {
+                if (count < max) {
+                    count++;
+                    $('.slide').css('background-image', 'url(./assets/materi/materi3/' + count +
+                        '-min.jpg)');
+                    $('.button-prev').css('display', 'block');
+                }
+
+                if (count == max) {
+                    $('.button-next').css('display', 'none');
+                } else {
+                    $('.button-next').css('display', 'block');
+                }
+            });
+        });
+    </script>
+</body>
+
+<script src="js/validate_orientation.js"></script>
+
+</html>
