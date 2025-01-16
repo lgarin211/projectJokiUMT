@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/profile.css">
+</head>
+
+<body>
+    <img src="./assets/logo-univ.png" alt="" id="logoUniv">
+    <div class="wrapper">
+        <div class="content">
+            <div class="inner-content">
+               <h1>Our Team 7C</h1>
+                <div class="contributors">
+                    <!-- <div class="contributor">
+                        <div class="contributor-number">
+                            1
+                        </div>
+                        <div class="contributor-detail">
+                            <p>Jennifer Ismail</p>
+                            <p>2602189480</p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="return-home-btn">
+                <a href="./home.html">
+                    <img src="./assets/button/home.png" alt="">
+                </a>
+            </div>
+            <img src="./assets/character/hijab-left.png" alt="" class="hijab-left">
+        </div>
+    </div>
+</body>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/validate_orientation.js"></script>
+<script>
+    var contributors = {
+        "0" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "1" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "2" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "3" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "4" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "5" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "6" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "7" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "8" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "9" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "10" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "11" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "12" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "13" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "14" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+        "15" : {
+            "name" : "Jennifer Ismail",
+            "nim" : "2602189480"
+        },
+    }
+
+    $(document).ready(function() {
+        var contributorList = $(".contributors");
+        for (var i = 0; i < 16; i++) {
+            var contributor = contributors[i];
+            var contributorElement = $("<div class='contributor'></div>");
+            var contributorNumber = $("<div class='contributor-number'>" + (i + 1) + "</div>");
+            var contributorDetail = $("<div class='contributor-detail'></div>");
+            var contributorName = $("<p>" + contributor.name + "</p>");
+            var contributorNim = $("<p>" + contributor.nim + "</p>");
+            contributorDetail.append(contributorName);
+            contributorDetail.append(contributorNim);
+            contributorElement.append(contributorNumber);
+            contributorElement.append(contributorDetail);
+            contributorList.append(contributorElement);
+        }
+    });
+</script>
+<!-- <script src="./js/block_back.js"></script> -->
+
+</html>

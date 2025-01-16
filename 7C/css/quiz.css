@@ -1,0 +1,62 @@
+.content {
+  background-image: url(../assets/home/base-background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-y: none;
+}
+
+.home-btn {
+  width: 28%;
+  opacity: 0.85;
+  transition: 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-btn:hover {
+  scale: 1.1;
+  opacity: 1;
+  transition: 0.5s ease-in-out;
+}
+
+.home-btn img {
+  width: 100%;
+}
+
+.materi {
+  position: absolute;
+  top: 38%;
+  left: 7%;
+}
+
+.petunjuk {
+  position: absolute;
+  top: 38%;
+  right: 7%;
+}
+
+.profile {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.quiz {
+  position: absolute;
+  top: 60%;
+  left: 4%;
+}
+
+.video {
+  position: absolute;
+  top: 60%;
+  right: 4%;
+}
+

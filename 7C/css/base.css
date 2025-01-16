@@ -1,11 +1,33 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Happy+Monkey&family=Play:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.wrapper{
-    width: 100vw;
-    height: 100vh;
-    position: relative;
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.return-home-btn {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.return-home-btn img {
+  width: 3.2rem;
+}
+
+#logoUniv{
+  width: 6rem;
+  position: absolute;
+  top: .5%;
+  left: .5%;
+  z-index: 9999;
 }

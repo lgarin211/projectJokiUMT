@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/quiz_detail.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <img src="./assets/logo-univ.png" alt="" id="logoUniv">
+    <div class="wrapper">
+        <div class="content">
+            <img src="./assets/character/boy-megaphone.png" alt="" class="left-sticker">
+            <div class="inner-content">
+                <div class="finish-quiz" style="display: none;">
+                    <h1>HASIL QUIZ</h1>
+                    <div class="quiz-results">
+                        <span id="correct">10</span> / <span id="total">10</span>
+                    </div>
+                </div>
+                <div class="quiz-header">
+                    <div id="number">1</div>
+                    <div id="question">Apa Pengertian dari Aku Cinta Kamu?Lorem ipsum dolor sit amet, consectetur
+                        adipisicing elit. Earum esse minima magnam iste odit repudiandae commodi voluptate eaque fuga
+                        aspernatur enim et, quas eos eligendi ratione quod. Eum, dolore qui?</div>
+                </div>
+
+                <div class="options">
+                    <div class="option selected" value="0">A. Omaigad Aku Cinta Kamu Lorem ipsum dolor sit amet
+                        consectetur adipisicing
+                        elit. Ab, cum molestiae expedita nesciunt omnis modi laboriosam quisquam laudantium dolorum aut
+                        eum dolore fuga voluptatem perferendis consequuntur rem distinctio in quas!</div>
+                    <div class="option" value="1">A. Omaigad Aku Cinta Kamu Lorem ipsum dolor sit amet consectetur
+                        adipisicing
+                        elit. Ab, cum molestiae expedita nesciunt omnis modi laboriosam quisquam laudantium dolorum aut
+                        eum dolore fuga voluptatem perferendis consequuntur rem distinctio in quas!</div>
+                    <div class="option" value="2">A. Omaigad Aku Cinta Kamu Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Ab, cum molestiae expedita nesciunt omnis modi laboriosam quisquam
+                        laudantium dolorum aut eum dolore fuga voluptatem perferendis consequuntur rem distinctio
+                        in quas!</div>
+                    <div class="option" value="3">A. Omaigad Aku Cinta Kamu Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Ab, cum molestiae expedita nesciunt omnis modi laboriosam quisquam
+                        laudantium dolorum aut eum dolore fuga voluptatem perferendis consequuntur rem distinctio
+                        in quas!</div>
+                </div>
+
+            </div>
+            <div class="controller-container">
+                <button id="btn-prev">
+                    <img src="./assets/button/left.png" alt="">
+                </button>
+                <a href="./quiz.html" id="backToHome" style="display: none;">
+                    <img src="./assets/button/home.png" alt="">
+                </a>
+                <button id="btn-next">
+                    <img src="./assets/button/right.png" alt="">
+                </button>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/validate_orientation.js"></script>
+<script>
+    var questionData = {
+        "questions": {
+            "0": "Apa pengertian dari ilmu pengetahuan?",
+            "1": "Menurut Aristoteles, dunia adalah….",
+            "2": "Apa saja prinsip dalam struktur ontologis substansi menurut Aristoteles?",
+            "3": "Apa yang dimaksud dengan mengembangkan ilmu pengetahuan menurut Aristoteles?",
+            "4": "Apa yang membedakan ilmu pengetahuan ilmiah dari pengetahuan biasa?"
+        },
+        "options": {
+            "0": [
+                "a. Sekumpulan pengetahuan yang tersusun secara sistematis dan runtut melalui metode ilmiah.",
+                "b. Sekumpulan elemen untuk pengetahuan yang diperoleh dari intuisi dan keyakinan pribadi.",
+                "c. Kumpulan fakta yang diwariskan secara turun-temurun.",
+                "d. Tidak bersumber tetapi terjadi begitu saja tanpa proses."
+            ],
+            "1": [
+                "a. Tidak eksis dan hanya bergantung pada dewa-dewa.",
+                "b. Sebuah ilusi yang tidak nyata.",
+                "c. Substansi yang mandiri dan eksis.",
+                "d. Dunia ide yang tidak terlihat."
+            ],
+            "2": [
+                "a. Ide dan materi.",
+                "b. Akt dan potensi.",
+                "c. Realitas dan imajinasi.",
+                "d. Kesempurnaan dan kekurangan."
+            ],
+            "3": [
+                "a. Mengumpulkan fakta-fakta eksternal.",
+                "b. Membuktikan keberadaan objek-objek eksternal.",
+                "c. Mengembangkan prinsip-prinsip dan teori.",
+                "d. Menyusun katalog benda-benda kongkrit."
+            ],
+            "4": [
+                "a. Ilmu pengetahuan ilmiah tidak menggunakan metode yang jelas.",
+                "b. Ilmu pengetahuan ilmiah bersifat sistematis, objektif, dan dapat dipertanggungjawabkan.",
+                "c. Pengetahuan biasa hanya dapat diuji oleh para ahli.",
+                "d. Pengetahuan ilmiah selalu bersifat subjektif."
+            ]
+        },
+        "answers": {
+            "0": 0,
+            "1": 2,
+            "2": 1,
+            "3": 2,
+            "4": 1
+        }
+    };
+</script>
+<script>
+    $(document).ready(() => {
+        var currentIndex = 0;
+        var totalQuestion = Object.keys(questionData.questions).length;
+        var answers = Array(totalQuestion).fill(-1);
+
+        // Function to render a question
+        function renderQuestion(index) {
+            let questionText = questionData.questions[index];
+            let options = questionData.options[index];
+
+            $('#number').text(index + 1); // Update question number
+            $('#question').text(questionText); // Update question text
+
+            // Clear and render options
+            let optionsContainer = $('.options');
+            optionsContainer.empty();
+            options.forEach((option, i) => {
+                let optionClass = answers[index] === i ? 'option selected' : 'option';
+                let optionElement = $(`<div class="${optionClass}" value="${i}">${option}</div>`);
+
+                // Add click handler for options
+                optionElement.click(() => {
+                    answers[index] = i; // Update the selected answer
+                    $('.option').removeClass('selected'); // Remove selected from others
+                    optionElement.addClass('selected'); // Add selected to clicked option
+                });
+
+                optionsContainer.append(optionElement);
+            });
+        }
+
+        // Function to calculate and display results
+        function showResults() {
+            let correctAnswers = 0;
+            for (let i = 0; i < totalQuestion; i++) {
+                if (answers[i] === questionData.answers[i]) {
+                    correctAnswers++;
+                }
+            }
+
+            // Show the results screen with a better layout
+            $('.inner-content').html(`
+        <div class="finish-quiz">
+            <h1 stlye="margin-top: 0.5rem;">Quiz Completed!</h1>
+            <div class="quiz-results">
+                <div class="results-circle">
+                    <span class="score">${correctAnswers}</span>
+                    <span class="separator">/</span>
+                    <span class="total">${totalQuestion}</span>
+                </div>
+                <p class="feedback-message">${getFeedbackMessage(correctAnswers, totalQuestion)}</p>
+            </div>
+        </div>
+    `);
+
+            // Restart button event
+            $('#restart-quiz').click(() => location.reload());
+        }
+
+        // Function to generate feedback based on the score
+        function getFeedbackMessage(correctAnswers, totalQuestions) {
+            let percentage = (correctAnswers / totalQuestions) * 100;
+
+            if (percentage === 100) {
+                return "Keren! Semua jawabanmu benar!";
+            } else if (percentage >= 75) {
+                return "Kerja bagus! Kamu telah mencoba dengan baik";
+            } else if (percentage >= 50) {
+                return "Percobaan yang baik! Berusaha terus!";
+            } else {
+                return "Jangan Menyerah! Coba Lagi Ya.";
+            }
+        }
+
+        // Function to show the confirmation modal
+        function showConfirmationModal() {
+            const modalHtml = `
+                <div class="modal-overlay">
+                    <div class="modal">
+                        <p>Kamu akan menyelesaikan kuis! Apa kamu yakin?</p>
+                        <div class="modal-buttons">
+                            <button id="confirm-yes">Ya</button>
+                            <button id="confirm-no">Tidak</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            $('body').append(modalHtml);
+
+            // Handle modal button clicks
+            $('#confirm-yes').click(() => {
+                $('.modal-overlay').remove();
+                showResults();
+                $("#btn-prev").css('display', 'none');
+                $("#btn-next").css('display', 'none');
+                $("#backToHome").css('display', 'block')
+            });
+
+            $('#confirm-no').click(() => {
+                $('.modal-overlay').remove();
+            });
+        }
+
+        // Handle Next button
+        $('#btn-next').click(() => {
+            if (currentIndex < totalQuestion - 1) {
+                currentIndex++;
+                renderQuestion(currentIndex);
+            } else {
+                // Last question, show confirmation modal
+                showConfirmationModal();
+            }
+        });
+
+        // Handle Previous button
+        $('#btn-prev').click(() => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion(currentIndex);
+            }
+        });
+
+        // Initial render
+        renderQuestion(currentIndex);
+    });
+</script>
+
+<style>
+
+</style>
+
+
+<!-- <script src="./js/block_back.js"></script> -->
+
+</html>
