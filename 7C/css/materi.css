@@ -1,5 +1,5 @@
 .content {
-  background-image: url(../assets/materi/base-background.jpg);
+  background-image: url(../assets/quiz_detail/base-background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -17,9 +17,15 @@
   width: 70%;
   height: 70%;
   position: absolute;
-  top: 6%;
+  top: 3%;
   left: 50%;
   transform: translate(-50%, 0);
+
+  background-image: url(../assets/board.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 1rem;
 }
 
 h1 {
