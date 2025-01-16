@@ -2,9 +2,14 @@
   width: 70%;
   height: 70%;
   position: absolute;
-  top: 6%;
+  top: 3%;
   left: 50%;
   transform: translate(-50%, 0);
+  background-image: url(../assets/board.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  
 }
 
 h1 {
@@ -25,6 +30,7 @@ h1 {
   color: #386944;
   text-align: center;
   width: 40%;
+  padding: 1rem;
   background-color: #efe0ad;
   border-radius: 20px;
   padding: 5px;
@@ -53,7 +59,7 @@ h1 {
 }
 
 .content {
-  background-image: url(../assets/video/base-background.jpg);
+  background-image: url(../assets/quiz_detail/base-background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
