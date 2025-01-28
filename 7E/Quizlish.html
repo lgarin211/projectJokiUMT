@@ -32,9 +32,9 @@
         <div class="col-1 text-center" style="height: 90dvh;">
             <h1>Quiz</h1>
         </div>
-        <div class="col-10" style="margin-top: -3rem;transform: scale(0.8); ">
+        <div class="col-10" style="margin-top: -3rem;transform: scale(0.8);">
             <div class="row justify-content-center">
-                <div class="col-4" style="transform: scale(0.95); ">
+                <div class="col-4" style="transform: scale(0.95);"  onclick="playthis('Q1.html','Telaah Filosofis Ilmu Pengetahuan dan Penelitian Ilmiah')">
                     <div class="card">
                         <img src="./Materi/K1/Kelompok 1_compressed_page-0001.jpg" class="card-img-top" alt="img1">
                         <div class="card-body">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4" style="transform: scale(0.95);">
+                <div class="col-4" style="transform: scale(0.95);" onclick="playthis('Q2.html','Pendekatan Kualitatif dan Kuantitatif Dalam Penelitian Tindakan Kelas')">
                     <div class="card">
                         <img src="./Materi/K2/Kelompok 2_page-0001.jpg" class="card-img-top" alt="img1">
                         <div class="card-body">
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4" style="transform: scale(0.95);">
+                <div class="col-4" style="transform: scale(0.95);" onclick="playthis('Q3.html','Hakikat Penelitian Tindakan Kelas')">
                     <div class="card">
                         <img src="./Materi/K3/PPT Kel.3 Penelitian Tindakan Kelas_page-0001.jpg" class="card-img-top" alt="img1">
                         <div class="card-body">
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4" style="transform: scale(0.95);">
+                <div class="col-4" style="transform: scale(0.95);" onclick="playthis('Q4.html','Model dan Prosedur Penelitian Tindakan Kelas')">
                     <div class="card">
                         <img src="./Materi/K4/PPT KEL 4_page-0001.jpg" class="card-img-top" alt="img1">
                         <div class="card-body">
@@ -79,26 +79,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4" style="transform: scale(0.95);">
+                <div class="col-4" style="transform: scale(0.95);" onclick="playthis('Q5.html','Instrumen Penelitian Tindakan Kelas')">
                     <div class="card">
                         <img src="./Materi/K5/kelompok 5_page-0001.jpg" class="card-img-top" alt="img1">
                         <div class="card-body">
                           <p class="card-title text-start">
                             Kelompok 5 <br>
-                            Instrument Penelitian Tindakan ...
-                            Kelas                             
+                            Instrument Penelitian Tindakan Kelas                             
                           </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-1 text-end" style="height: 100dvh;margin-top: 18rem;">
-            <a href="./home.html" class="home-icon">
-              <img src="./Ln/homei.png" alt="Home" width="50">
+        <div class="col-1 text-end">
+            <a href="home.html" class="home-icon">
+                <img src="./Ln/homei.png" alt="Home" width="50">
             </a>
-          </div>
+        </div>
     </div>
+
+    <script>
+        function playthis(id,tilteset){
+          window.location.href = './Quiz/'+id
+        }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./js/byu.js"></script>
   </body>

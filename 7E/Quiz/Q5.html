@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .options button {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .score {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body style="background: url('../Ln/bgn.png');">
+    <div class="container">
+        <div class="quiz-container">
+            <div id="quiz">
+                <div class="question" id="question">Question will appear here</div>
+                <div class="options" id="options"></div>
+                <button class="btn btn-primary mt-3" id="nextButton" disabled>Next</button>
+            </div>
+            <div id="result" class="text-center d-none">
+                <p class="score" id="score">Your score: 0/0</p>
+                <button class="btn btn-success" id="restartButton">Restart Quiz</button>
+                <button class="btn btn-secondary" id="homeButton" onclick="goHome()">Go to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       const questions = [
+    {
+        question: "Mengapa instrumen dianggap sebagai 'jantungnya penelitian' dalam Penelitian Tindakan Kelas (PTK)?",
+        options: [
+            "Karena instrumen digunakan untuk mencatat hasil belajar siswa.",
+            "Karena instrumen menentukan keberhasilan pengajaran guru.",
+            "Karena instrumen memungkinkan pengumpulan data secara sistematis dan objektif.",
+            "Karena instrumen berfungsi sebagai pelengkap dalam pembelajaran."
+        ],
+        answer: 2
+    },
+    {
+        question: "Menurut Millis (2003), terdapat tiga teknik pengumpulan data yang dapat dipilih oleh peneliti untuk mengumpulkan data, yang disebut dengan 3 E. Kepanjangan dari 3 E adalah?",
+        options: [
+            "Experiencing, Enquiring, dan Examining",
+            "Experiment, Exploration, dan Examination",
+            "Examining, Eksperimen, dan Exploration",
+            "Evaluation, Eksperimen, dan Explanation"
+        ],
+        answer: 0
+    },
+    {
+        question: "Secara etimologis, kata 'penelitian' (research) berasal dari dua kata, yaitu:",
+        options: [
+            "Re dan search, yang berarti kembali dan mencari",
+            "Re dan search, yang berarti menyusun dan mencari",
+            "Re dan search, yang berarti meneliti dan mencari",
+            "Re dan search, yang berarti membaca dan memahami"
+        ],
+        answer: 0
+    },
+    {
+        question: "Jenis-jenis reliabilitas instrumen dalam penelitian meliputi:",
+        options: [
+            "Reliabilitas tes, observasi, dan wawancara",
+            "Tes retest, ekuivalen gabungan, internal consistency",
+            "Reliabilitas internal, eksternal, dan validitas",
+            "Reliabilitas kuantitatif, kualitatif, dan eksperimen"
+        ],
+        answer: 1
+    },
+    {
+        question: "Model analisis kualitatif yang digunakan oleh model Miles & Huberman yaitu:",
+        options: [
+            "Pengumpulan Data, Reduksi data, penyajian data, dan penarikan kesimpulan/verifikasi.",
+            "Pemilahan data kuantitatif menjadi kategori statistik sederhana.",
+            "Reduksi data, penyajian data dalam bentuk grafik, dan penarikan kesimpulan.",
+            "Pengumpulan data dan Reduksi Data"
+        ],
+        answer: 0
+    },
+    {
+        question: "Apa yang dimaksud dengan penelitian tindakan kelas?",
+        options: [
+            "Penelitian yang dilakukan di laboratorium dengan menggunakan variabel terkontrol",
+            "Penelitian berbasis eksperimen yang tidak melibatkan siswa dan guru",
+            "Penelitian yang melibatkan pengamatan oleh guru atau teman sejawat untuk mengumpulkan data observasi terhadap tindakan guru dan aktivitas siswa",
+            "Penelitian berbasis teori tanpa melibatkan praktik langsung"
+        ],
+        answer: 2
+    },
+    {
+        question: "Rekaman foto, slide, tape, dan video dapat digunakan dalam penelitian untuk...",
+        options: [
+            "Mengidentifikasi masalah atau fokus penelitian berikutnya",
+            "Membantu peneliti menggambarkan situasi yang terjadi di kelas secara visual",
+            "Menulis ulang catatan lapangan secara deskriptif",
+            "Mengumpulkan dokumen arsip yang relevan"
+        ],
+        answer: 1
+    },
+    {
+        question: "Jenis-jenis validitas instrumen dalam penelitian meliputi:",
+        options: [
+            "Validitas internal, eksternal, dan reliabilitas",
+            "Validitas konstruk, Validitas isi, dan validitas eksternal",
+            "Validitas kuantitatif, kualitatif, dan statistik",
+            "Validitas eksperimen, observasi, dan wawancara"
+        ],
+        answer: 1
+    },
+    {
+        question: "Teknik pengumpulan data melalui perbuatan dan pemanfaatan catatan (examining) meliputi pengumpulan data dari berbagai sumber yang dapat berupa?",
+        options: [
+            "Observasi, wawancara, Angket",
+            "Dokumen arsip, catatan lapangan, rekaman foto slide tape dan video",
+            "Penyajian data, reduksi data, verifikasi",
+            "Input, proses, output"
+        ],
+        answer: 1
+    },
+    {
+        question: "Metode pengujian reliabilitas instrumen yang melibatkan pencobaan instrumen dua kali atau lebih kepada responden yang sama dengan waktu yang berbeda disebut...",
+        options: [
+            "Ekuivalen",
+            "Test-retest",
+            "Gabungan",
+            "Internal consistency"
+        ],
+        answer: 1
+    }
+];
+
+
+
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        const questionEl = document.getElementById("question");
+        const optionsEl = document.getElementById("options");
+        const nextButton = document.getElementById("nextButton");
+        const resultEl = document.getElementById("result");
+        const scoreEl = document.getElementById("score");
+        const restartButton = document.getElementById("restartButton");
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            questionEl.textContent = `${currentQuestion + 1}. ${q.question}`;
+            optionsEl.innerHTML = "";
+            q.options.forEach((option, index) => {
+                const button = document.createElement("button");
+                button.className = "btn btn-outline-primary";
+                button.textContent = option;
+                button.onclick = () => selectOption(index);
+                optionsEl.appendChild(button);
+            });
+            nextButton.disabled = true;
+        }
+
+        function selectOption(index) {
+            const q = questions[currentQuestion];
+            if (index === q.answer) {
+                score++;
+            }
+            nextButton.disabled = false;
+            Array.from(optionsEl.children).forEach((button, i) => {
+                button.classList.remove("btn-outline-primary", "btn-success", "btn-danger");
+                button.classList.add(i === q.answer ? "btn-success" : "btn-danger");
+                button.disabled = true;
+            });
+        }
+
+        nextButton.onclick = () => {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        };
+
+        function showResult() {
+            quiz.style.display = "none";
+            resultEl.classList.remove("d-none");
+            scoreEl.textContent = `Your score: ${score}/${questions.length}`;
+        }
+
+        restartButton.onclick = () => {
+            currentQuestion = 0;
+            score = 0;
+            resultEl.classList.add("d-none");
+            quiz.style.display = "block";
+            loadQuestion();
+        };
+
+        function goHome() {
+            window.location.href = "/home.html"; // Change to your desired home URL
+        }
+
+        document.addEventListener("DOMContentLoaded", loadQuestion);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
