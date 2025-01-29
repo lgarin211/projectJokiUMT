@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MATERI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .main-title {
+            font-weight: bold;
+            font-size: 3rem;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+        .home-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        *{
+          font-family: 'Georgia','Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body class="bg-light" style="background-image: url('./Ln/SVBlue.jpg');">
+    <div class="mt-1" style="transform: scale(0.9);">
+        <h4 class="main-title">&raquo; <span id="lit_tille">Materi Kelompok 1</span></h2>
+        <div class="row">
+            <div class="col-8" id="patentset">
+                <img src="./Ln/PPT APK.jpg" alt="Materi Kelompok 1" id="titleset" onabort="mainset(0)" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-4" style="transform: scale(1); margin-top: 1rem;">
+                <h4><strong id="kelompokset">Kelompok 1</strong></h4>
+                <h4><strong id="tilteset">Telaah Filosofis Ilmu Pengetahuan dan Penelitian Ilmiah</strong></h4>
+                <ul id="listkelompokset" style="display: none;">
+                    <li><strong>Beta Berliana</strong></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="row mt-4" id="listmaterisetp">
+            <div class="col-3">
+                <div class="card">
+                    <img src="placeholder.jpg" onclick="mainset(2)" alt="Materi 2">
+                    <div class="card-body">
+                        <p>Pendekatan Kualitatif dan Kuantitatif</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card">
+                    <img src="placeholder.jpg" onclick="mainset(3)" alt="Materi 3">
+                    <div class="card-body">
+                        <p>Hakikat Penelitian Tindakan Kelas</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card">
+                    <img src="placeholder.jpg" onclick="mainset(4)" alt="Materi 4">
+                    <div class="card-body">
+                        <p>Model dan Prosedur Penelitian</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card">
+                    <img src="placeholder.jpg" onclick="mainset(5)"alt="Materi 5">
+                    <div class="card-body">
+                        <p>Instrumen Penelitian</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <a href="./home.html" class="home-icon">
+        <img src="./Ln/homei.png" alt="Home" width="50" style="filter: drop-shadow(2px 4px 6px black);">
+    </a>
+    <script>
+       var listkelompok=[
+            {
+                name:"kelompok 1",
+                title:"Telaah Filosofis Ilmu Pengetahuan dan Penelitian Ilmiah",
+                list:[
+                    "Beta Berliana",
+                    "Nanda Nahzifa",
+                    "Ganriella",
+                ],
+                poster:"./Materi/K1/Kelompok 1_compressed_page-0001.jpg",
+
+            },
+            {
+                name:"kelompok 2",
+                title:"Pendekatan Kualitatif dan Kuantitatif",
+                list:[
+                    "Devi Kusnadi",
+                    "Nanda Aisyah",
+                    "Rahmatul Aulia",
+                ],
+                poster:"./Materi/K2/Kelompok 2_page-0001.jpg",
+            },
+            {
+                name:"kelompok 3",
+                title:"Hakikat Penelitian Tindakan Kelas",
+                list:[
+                    "Khilda Jumhadi Putri",
+                    "Nabila Ilyasa",
+                    "Santika Vidia Pratami",
+                ],
+                poster:"./Materi/K3/PPT Kel.3 Penelitian Tindakan Kelas_page-0001.jpg",
+            },
+            {
+                name:"kelompok 4",
+                title:"Model dan Prosedur Penelitian",
+                list:[
+                    "Nur Febriyani",
+                    "Rizka Ezzafira",
+                    "Santi Safitri",
+                    "Vianti Dinda Nurafifah"
+                ],
+                poster:"./Materi/K4/PPT KEL 4_page-0001.jpg",
+            },
+            {
+                name:"kelompok 5",
+                title:"Instrumen Penelitian",
+                list:[
+                    "Ratasya Salsabila Putri",
+                    "Ria Rosita",
+                    "Sumayya Mujahidah. S",
+                ],
+                poster:"./Materi/K5/kelompok 5_page-0001.jpg",
+            }
+        ]
+
+        function mainset(cat) {
+            // alert("Materi Kelompok "+(cat+1))
+            window.location.href = `./Materi/K`+(cat+1)+'/index.html';
+        }
+
+        function listofmateri(active) {            
+            document.getElementById("lit_tille").innerHTML=listkelompok[active].name
+            document.getElementById("kelompokset").innerHTML=listkelompok[active].name
+            document.getElementById("tilteset").innerHTML=listkelompok[active].title
+            document.getElementById("patentset").innerHTML=`<img src="${listkelompok[active].poster}" alt="Materi Kelompok ${active}" id="titleset" onclick="mainset(${active})" class="img-fluid rounded shadow">`
+
+            
+            var listkelompokset=document.getElementById("listkelompokset")
+            listkelompokset.innerHTML=""
+            listkelompok[active].list.forEach(element => {
+                var li=document.createElement("li")
+                li.innerHTML=element
+                listkelompokset.appendChild(li)
+            });
+
+            var setop=listkelompok
+            listmaterisetp.innerHTML=""
+            setop.forEach((element,index) => {
+                if(index==active){
+                    return
+                }
+                var div=document.createElement("div")
+                div.className="col-3"
+                div.innerHTML=`
+                <div class="card platbutton" onclick="listofmateri(${index})" style="transform: scale(1.1);">
+                    <img src="${element.poster}" alt="Materi ${index}">
+                </div>
+                `
+                listmaterisetp.appendChild(div)
+            });
+        }
+
+        listofmateri(0);
+    </script>
+    <script src="./js/validate_orientation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/byu.js"></script>
+</body>
+</html>

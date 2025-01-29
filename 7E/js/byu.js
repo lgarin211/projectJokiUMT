@@ -62,14 +62,23 @@ function initializePlatButtonTransformation() {
         button.addEventListener("mouseleave", () => {
             button.style.transform = "";
         });
-
-        // button click play sound https://www.myinstants.com/media/sounds/clickar.mp3
-        button.addEventListener("click", () => {
-            const audio = new Audio("../Ln/clickar.mp3");
-            audio.play();
-        });
     });
 }
+
+
+        // // button click play sound https://www.myinstants.com/media/sounds/clickar.mp3
+        // button.addEventListener("click", () => {
+        //     const audio = new Audio("../Ln/clickar.mp3");
+        //     audio.play();
+        // });
+
+// setiap kali ada event click dimanapun itu maka play audio
+document.addEventListener("click", () => {
+    const audio = new Audio("../Ln/clickar.mp3");
+    alert("click");
+    audio.play();
+});
+
 
 // Add event listeners to enforce landscape mode on resize and load
 window.addEventListener("resize", enforceLandscape);

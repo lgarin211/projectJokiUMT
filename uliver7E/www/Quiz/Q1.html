@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .options button {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .score {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body style="background: url('../Ln/bgn.png');">
+    <div class="container" style="transform: scale(0.8);">
+        <div class="quiz-container">
+            <div id="quiz">
+                <div class="question" id="question">Question will appear here</div>
+                <div class="options" id="options"></div>
+                <button class="btn btn-primary mt-3" id="nextButton" disabled>Next</button>
+            </div>
+            <div id="result" class="text-center d-none">
+                <p class="score" id="score">Your score: 0/0</p>
+                <button class="btn btn-success" id="restartButton">Restart Quiz</button>
+                <button class="btn btn-secondary" id="homeButton" onclick="goHome()">Go to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       const questions = [
+            {
+                question: "Apa yang menjadi ciri utama persepsi mitos?",
+                options: [
+                    "Dunia dikendalikan oleh kekuatan magis dan mistis",
+                    "Dunia dijelaskan dengan argumentasi rasional",
+                    "Dunia dianalisis berdasarkan ilmu modern",
+                    "Dunia hanya dianalisis dari faktor internal"
+                ],
+                answer: 0
+            },
+            {
+                question: "Apa yang menjadi ciri utama cara berpikir Galileo pada abad ke-17?",
+                options: ["Ontologis rasional", "Analisis kuantitatif atau matematis", "Metafisis", "Spekulatif"],
+                answer: 1
+            },
+            {
+                question: "Revolusi ilmu pengetahuan pada abad ke-17 ditandai oleh perubahan dalam cara berpikir. Apa perubahan tersebut?",
+                options: [
+                    "Dari spekulasi ke analisis matematis",
+                    "Dari metafisika ke ontologi",
+                    "Dari rasionalitas ke spiritualitas",
+                    "Dari eksperimentasi ke intuisi"
+                ],
+                answer: 0
+            },
+            {
+                question: "Apa pendekatan utama Aristoteles dalam berpikir ilmiah?",
+                options: ["Berbasis data eksperimen", "Berfokus pada ontologi rasional", "Berlandaskan teori kuantitatif", "Berorientasi pada pemikiran pragmatis"],
+                answer: 1
+            },
+            {
+                question: "Siapa tokoh yang terkenal dengan ungkapan 'Cogito Ergo Sum'?",
+                options: ["Galileo", "Aristoteles", "Rene Descartes", "Isaac Newton"],
+                answer: 2
+            },
+            {
+                question: "Apa yang menjadi penekanan dalam definisi ilmu pengetahuan menurut John Ziman?",
+                options: [
+                    "Manfaat dan kesahihan gagasan baru",
+                    "Pengembangan gagasan tanpa eksperimen",
+                    "Keakuratan teori yang sudah ada",
+                    "Pemikiran metafisik tentang alam semesta"
+                ],
+                answer: 0
+            },
+            {
+                question: "Apa yang menjadi ciri khas dari definisi stipulatif?",
+                options: [
+                    "Definisi ini bersifat deskriptif dan dapat diuji kebenarannya",
+                    "Definisi ini disusun berkaitan dengan tujuan tertentu, tanpa mempermasalahkan kebenaran atau kesalahannya",
+                    "Definisi ini menggunakan teori tertentu untuk menjelaskan suatu konsep",
+                    "Definisi ini berkaitan dengan pengukuran ilmiah yang objektif"
+                ],
+                answer: 1
+            },
+            {
+                question: "Apa yang terkandung dalam definisi persuasif?",
+                options: [
+                    "Penjelasan objektif tanpa ada ajakan",
+                    "Penjelasan yang mengandung anjuran agar orang melakukan atau tidak melakukan sesuatu",
+                    "Penjelasan yang hanya bersifat deskriptif",
+                    "Penjelasan yang hanya menunjukkan fakta tanpa pandangan moral"
+                ],
+                answer: 1
+            },
+            {
+                question: "Tujuan akhir dari penelitian akademik adalah?",
+                options: [
+                    "Menyusun hipotesis yang menarik",
+                    "Rekomendasi pemecahan masalah berdasarkan tesis yang teruji",
+                    "Menilai kebenaran teori yang sudah ada",
+                    "Mengumpulkan data sebanyak-banyaknya"
+                ],
+                answer: 1
+            },
+            {
+                question: "Menurut Jujun (2010), pengetahuan diartikan sebagai segala yang kita tahu tentang suatu objek tertentu dan mencakup cabang-cabang yang bersifat spesifik. Cabang-cabang pengetahuan yang disebutkan termasuk:",
+                options: [
+                    "Metodologi, aksiologi, dan epistemologi",
+                    "Ontologi, epistemologi, dan aksiologi",
+                    "Filsafat, ilmu alam, dan ilmu sosial",
+                    "Logika, etika, dan estetika"
+                ],
+                answer: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        const questionEl = document.getElementById("question");
+        const optionsEl = document.getElementById("options");
+        const nextButton = document.getElementById("nextButton");
+        const resultEl = document.getElementById("result");
+        const scoreEl = document.getElementById("score");
+        const restartButton = document.getElementById("restartButton");
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            questionEl.textContent = `${currentQuestion + 1}. ${q.question}`;
+            optionsEl.innerHTML = "";
+            q.options.forEach((option, index) => {
+                const button = document.createElement("button");
+                button.className = "btn btn-outline-primary";
+                button.textContent = option;
+                button.onclick = () => selectOption(index);
+                optionsEl.appendChild(button);
+            });
+            nextButton.disabled = true;
+        }
+
+        function selectOption(index) {
+            const q = questions[currentQuestion];
+            if (index === q.answer) {
+                score++;
+            }
+            nextButton.disabled = false;
+            Array.from(optionsEl.children).forEach((button, i) => {
+                button.classList.remove("btn-outline-primary", "btn-success", "btn-danger");
+                button.classList.add(i === q.answer ? "btn-success" : "btn-danger");
+                button.disabled = true;
+            });
+        }
+
+        nextButton.onclick = () => {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        };
+
+        function showResult() {
+            quiz.style.display = "none";
+            resultEl.classList.remove("d-none");
+            scoreEl.textContent = `Your score: ${score}/${questions.length}`;
+        }
+
+        restartButton.onclick = () => {
+            currentQuestion = 0;
+            score = 0;
+            resultEl.classList.add("d-none");
+            quiz.style.display = "block";
+            loadQuestion();
+        };
+
+        function goHome() {
+            window.location.href = "../home.html"; // Change to your desired home URL
+        }
+
+        document.addEventListener("DOMContentLoaded", loadQuestion);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
