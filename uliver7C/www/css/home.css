@@ -6,7 +6,7 @@
 }
 
 .inner-col > a{
-    width: 90%;
+    width: 40%;
     text-align: center;
     text-decoration: none;
     color: #fff;
@@ -14,9 +14,9 @@
     font-weight: bold;
     padding: 1rem;
     border-radius: 5px;
-    background-color: rgba(255, 134, 116, 1);
+    background-color: rgb(129, 4, 4);
     transition: all 0.3s ease-in-out;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 }
 

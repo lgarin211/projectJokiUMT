@@ -1,5 +1,5 @@
 .content{
-    background-image: url('../assets/materi/board-background.png');
+    background-image: url('../assets/petunjuk/board-background.png');
     background-size: cover;
     width: 50%;
     position: relative;
@@ -8,12 +8,12 @@
 }
 
 .wrapper{
-    background-image: url(../assets/profile/base-background.png)
+    background-image: url(../assets/petunjuk/base-background.png)
 }
 
 .inner-content{
     width: 95%;
-    height: 65%;
+    height: 60%;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
@@ -58,10 +58,9 @@
 }
 
 h3{
-    font-family: "Popins", sans-serif;
     position: absolute;
     top: 5%;
-    color: black;
+    color: white;
 }
 
 /* .content > h1{

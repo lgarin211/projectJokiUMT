@@ -1,2 +1,2 @@
-Title: Smart Edu PTK
-Description: Materi Pembelajaran Penelitian Tindakan Kelas (Tim Kelas 7B)
+PTK7A
+- Aplikasi PTK, Penerapan kelas 7A Universitas Muhammadiyah Tangerang (UMT)

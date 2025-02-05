@@ -26,3 +26,71 @@
    26  cordova build android --release -- --keystore=./CUSTEM.keystore --storePassword=@CUSTEM211 --alias=Dcustem --password=@CUSTEM211 --packageType=bundle
    27  exit
    28  history >> coil.txt
+
+
+wget https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -O android-sdk.zip;unzip android-sdk.zip -d android-sdk;rm -rf android-sdk.zip;sudo mv android-sdk /usr/local/android-sdk;echo "export ANDROID_HOME=/usr/local/android-sdk" >> $HOME/.bashrc;
+
+curl -s https://get.sdkman.io | bash;source $HOME/.sdkman/bin/sdkman-init.sh;sdk install java 17.0.13-amzn;sdk install gradle;echo "SDKMN UDAH";wget https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -O android-sdk.zip;unzip android-sdk.zip -d android-sdk;rm -rf android-sdk.zip;sudo mv android-sdk /usr/local/android-sdk;echo "export ANDROID_HOME=/usr/local/android-sdk" >> $HOME/.bashrc;echo "export PATH=\$PATH:\$ANDROID_HOME/cmdline-tools/bin:\$ANDROID_HOME/platform-tools" >> $HOME/.bashrc;source $HOME/.bashrc;yes | sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "platforms;android-34" "build-tools;34.0.0";yes | sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "platforms;android-33" "build-tools;33.0.2";echo "Android Udh";npm install -g cordova;echo "cordova udh";yes | cordova platform add android@12.*;yes | cordova build android;mv /workspaces/jpp1/platforms/android/app/build/outputs/apk/debug/app-debug.apk /workspaces/jpp1/;echo "NIH APPSNYA DH JADI"
+
+
+
+# Menginstal SDKMAN
+curl -s https://get.sdkman.io | bash
+
+# Memuat SDKMAN ke dalam shell
+source $HOME/.sdkman/bin/sdkman-init.sh
+
+# Menginstal Java versi 17.0.13 dari Amazon Corretto
+sdk install java 17.0.13-amzn
+
+# Menginstal Gradle
+sdk install gradle
+
+echo "SDKMN UDAH"
+
+# Mengunduh Android Command Line Tools
+wget https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -O android-sdk.zip
+
+# Mengekstrak Android SDK
+unzip android-sdk.zip -d android-sdk
+
+# Menghapus file zip setelah diekstrak
+rm -rf android-sdk.zip
+
+# Memindahkan Android SDK ke direktori sistem
+sudo mv android-sdk /usr/local/android-sdk
+
+# Menambahkan Android SDK ke dalam environment variables
+echo "export ANDROID_HOME=/usr/local/android-sdk" >> $HOME/.bashrc
+echo "export PATH=\$PATH:\$ANDROID_HOME/cmdline-tools/bin:\$ANDROID_HOME/platform-tools" >> $HOME/.bashrc
+
+# Memuat ulang konfigurasi shell
+source $HOME/.bashrc
+
+# Menginstal platform-tools, platform Android 34, dan build-tools 34.0.0
+yes | sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+
+# Menginstal platform-tools, platform Android 33, dan build-tools 33.0.2
+yes | sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "platforms;android-33" "build-tools;33.0.2"
+
+echo "Android Udh"
+
+# Menginstal Cordova secara global dengan npm
+npm install -g cordova
+
+echo "cordova udh"
+
+# Menambahkan platform Android versi 12 ke proyek Cordova
+yes | cordova platform add android@12.*
+
+# Membangun aplikasi Android dengan Cordova
+yes | cordova build android
+
+# Memindahkan APK hasil build ke direktori kerja utama
+mv /workspaces/jpp1/platforms/android/app/build/outputs/apk/debug/app-debug.apk /workspaces/jpp1/
+
+echo "NIH APPSNYA DH JADI"
+
+cordova platfroam add android
+
+cordova build android --release -- --keystore=./CUSTEM.keystore --storePassword=@CUSTEM211 --alias=Dcustem --password=@CUSTEM211 --packageType=bundle

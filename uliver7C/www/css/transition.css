@@ -89,15 +89,13 @@
 
 .wrapper-2{
     height: 90vh;
-    width: 50vw;
-    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 10vh;
     /* Add box shadow */
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
     padding: 16px;
 }

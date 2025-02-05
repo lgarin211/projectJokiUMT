@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .options button {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .score {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body style="background: url('../Ln/bgn.png');">
+    <div class="container">
+        <div class="quiz-container">
+            <div id="quiz">
+                <div class="question" id="question">Question will appear here</div>
+                <div class="options" id="options"></div>
+                <button class="btn btn-primary mt-3" id="nextButton" disabled>Next</button>
+            </div>
+            <div id="result" class="text-center d-none">
+                <p class="score" id="score">Your score: 0/0</p>
+                <button class="btn btn-success" id="restartButton">Restart Quiz</button>
+                <button class="btn btn-secondary" id="homeButton" onclick="goHome()">Go to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       const questions = [
+    {
+        question: "Pada tahun berapa Kurt Lewin mengembangkan konsep Penelitian Tindakan?",
+        options: ["1946", "1976", "1988", "1994"],
+        answer: 0,
+        score: 10
+    },
+    {
+        question: "Siapa yang mengembangkan Penelitian Tindakan di Inggris untuk mendukung belajar menemukan?",
+        options: [
+            "Brown dan Abernathy",
+            "David Hopkins",
+            "Kemmis dan Taggart",
+            "John Elliott dan Clem Adelman"
+        ],
+        answer: 3,
+        score: 10
+    },
+    {
+        question: "Apa langkah awal dalam siklus Penelitian Tindakan menurut Stringer?",
+        options: ["Observasi", "Peninjauan ulang", "Perencanaan", "Implementasi"],
+        answer: 2,
+        score: 10
+    },
+    {
+        question: "Bagaimana Penelitian Tindakan dapat diterapkan untuk meningkatkan pembelajaran?",
+        options: [
+            "Dengan meningkatkan teori",
+            "Dengan memberikan tindakan dan evaluasi",
+            "Dengan mengikuti prosedur tetap",
+            "Dengan mengembangkan kebijakan pemerintah"
+        ],
+        answer: 1,
+        score: 10
+    },
+    {
+        question: "Apa yang dimaksud dengan Penelitian Tindakan Kelas (PTK) menurut Mc. Niff (1992:5)?",
+        options: [
+            "Penelitian yang dilakukan oleh peneliti luar terhadap proses pembelajaran di kelas.",
+            "Penelitian yang dilakukan oleh guru di kelasnya sendiri untuk memperbaiki kualitas pembelajaran.",
+            "Penelitian eksperimen yang melibatkan kelompok kontrol dan eksperimen.",
+            "Penelitian untuk mengetahui hubungan antara variabel bebas dan terikat dalam pembelajaran."
+        ],
+        answer: 1,
+        score: 10
+    },
+    {
+        question: "Apa yang membedakan Penelitian Tindakan Kelas (PTK) dengan penelitian kelas menurut teks di atas?",
+        options: [
+            "PTK dilakukan oleh orang luar dan melibatkan kelompok eksperimen.",
+            "Penelitian kelas bertujuan untuk menemukan hubungan antara variabel-variabel dalam pembelajaran.",
+            "PTK dilakukan oleh guru untuk memperbaiki praktek pembelajaran di kelasnya, sementara penelitian kelas dilakukan oleh orang luar untuk mengumpulkan data di kelas.",
+            "PTK dapat digeneralisasi hasilnya, sedangkan penelitian kelas tidak."
+        ],
+        answer: 2,
+        score: 10
+    },
+    {
+        question: "Apa yang harus dilakukan oleh guru sebelum memulai PTK berdasarkan prinsip PTK?",
+        options: [
+            "Mengubah situasi rutin agar hasil penelitian lebih akurat.",
+            "Melakukan analisis SWOT untuk menganalisis kekuatan, kelemahan, peluang, dan ancaman.",
+            "Menyusun kurikulum baru untuk mengubah pembelajaran.",
+            "Memilih kelompok eksperimen dan kelompok kontrol yang berbeda."
+        ],
+        answer: 1,
+        score: 10
+    },
+    {
+        question: "Apa yang menjadi ciri utama dari Penelitian Tindakan Kelas (PTK) dalam hal refleksi diri?",
+        options: [
+            "PTK dilakukan oleh guru dengan bantuan ahli luar",
+            "PTK dimulai dari refleksi diri guru yang bertanya tentang proses pembelajaran",
+            "PTK dilaksanakan dalam jangka waktu yang sangat lama",
+            "PTK tidak memerlukan siklus perencanaan dan observasi"
+        ],
+        answer: 1,
+        score: 10
+    },
+    {
+        question: "Apa tujuan utama dari Penelitian Tindakan Kelas (PTK)?",
+        options: [
+            "Menilai kemampuan siswa secara individu",
+            "Meningkatkan kualitas pembelajaran dan profesionalisme guru secara bertahap",
+            "Menghasilkan data penelitian untuk disebarkan ke masyarakat",
+            "Menguji teori-teori pendidikan yang sudah ada"
+        ],
+        answer: 1,
+        score: 10
+    },
+    {
+        question: "Manakah di bawah ini yang merupakan salah satu manfaat PTK dalam pengembangan kurikulum?",
+        options: [
+            "Memberikan teori-teori baru tentang pendidikan",
+            "Membantu guru memahami kurikulum dari perspektif empiris",
+            "Membuat kurikulum yang lebih rumit",
+            "Memperkenalkan teori-teori kurikulum baru kepada guru"
+        ],
+        answer: 1,
+        score: 10
+    }
+];
+
+
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        const questionEl = document.getElementById("question");
+        const optionsEl = document.getElementById("options");
+        const nextButton = document.getElementById("nextButton");
+        const resultEl = document.getElementById("result");
+        const scoreEl = document.getElementById("score");
+        const restartButton = document.getElementById("restartButton");
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            questionEl.textContent = `${currentQuestion + 1}. ${q.question}`;
+            optionsEl.innerHTML = "";
+            q.options.forEach((option, index) => {
+                const button = document.createElement("button");
+                button.className = "btn btn-outline-primary";
+                button.textContent = option;
+                button.onclick = () => selectOption(index);
+                optionsEl.appendChild(button);
+            });
+            nextButton.disabled = true;
+        }
+
+        function selectOption(index) {
+            const q = questions[currentQuestion];
+            if (index === q.answer) {
+                score++;
+            }
+            nextButton.disabled = false;
+            Array.from(optionsEl.children).forEach((button, i) => {
+                button.classList.remove("btn-outline-primary", "btn-success", "btn-danger");
+                button.classList.add(i === q.answer ? "btn-success" : "btn-danger");
+                button.disabled = true;
+            });
+        }
+
+        nextButton.onclick = () => {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        };
+
+        function showResult() {
+            quiz.style.display = "none";
+            resultEl.classList.remove("d-none");
+            scoreEl.textContent = `Your score: ${score}/${questions.length}`;
+        }
+
+        restartButton.onclick = () => {
+            currentQuestion = 0;
+            score = 0;
+            resultEl.classList.add("d-none");
+            quiz.style.display = "block";
+            loadQuestion();
+        };
+
+        function goHome() {
+            window.location.href = "../home.html"; // Change to your desired home URL
+        }
+
+        document.addEventListener("DOMContentLoaded", loadQuestion);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
