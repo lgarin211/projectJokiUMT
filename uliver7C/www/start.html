@@ -1,102 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start Page</title>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <title>Document</title>
     <link rel="stylesheet" href="./css/base.css">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            background: linear-gradient(135deg, #4caf50, #ffc107); /* Green to Yellow */
-            color: #fff;
-            font-family: Arial, sans-serif;
-            transition: transform 0.6s ease-out; /* Smooth swipe effect */
-        }
-
-        .landing-container {
-            text-align: center;
-        }
-
-        .logo {
-            max-width: 150px;
-            margin-bottom: 20px;
-        }
-
-        .title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-        }
-
-        .swipe-hint {
-            font-size: 1rem;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .overlay {
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background: rgba(0, 0, 0, 0.3);
-        }
-    </style>
+    <link rel="stylesheet" href="./css/start.css">
 </head>
-
 <body>
-    <div class="landing-container">
-        <img src="./assets/logo-univ.png" alt="University Logo" class="logo">
-        <div class="title">Dr. Mawardi, S.S.I., M.Pd</div>
-        <div class="subtitle">Universitas Muhammadiyah Tangerang</div>
-        <div class="swipe-hint">Geser ke atas untuk melanjutkan &uarr;</div>
+    
+    <img src="./assets/logo-univ.png" alt="" id="logoUniv">
+    <div class="wrapper">
+        <div class="content">
+            <div class="start-button">
+                <a href="./home.html">
+                    <img src="./assets/button/home-start.png" alt="">
+                </a>
+            </div>
+        </div>
     </div>
-
-    <div class="overlay"></div>
-
-    <script>
-        // Variables to track touch positions
-        let startY = 0;
-        let endY = 0;
-
-        // Add touchstart listener
-        document.addEventListener('touchstart', function (e) {
-            startY = e.touches[0].clientY;
-        });
-
-        document.addEventListener('touchend', function (e) {
-            endY = e.changedTouches[0].clientY;
-            if (startY - endY > 50) { // Detect swipe up gesture
-                // Add swipe animation
-                document.body.style.transform = 'translateY(-100%)';
-                setTimeout(() => {
-                    window.location.href = 'start2.html';
-                }, 600);
-            }
-        });
-    </script>
-    <script src="./js/validate_orientation.js"></script>
-    <script src="./js/byu.js"></script>
 </body>
-
+<script src="./js/jquery.min.js"></script>
+<script src="./js/validate_orientation.js"></script>
+<!-- <script src="./js/block_back.js"></script> -->
 </html>
