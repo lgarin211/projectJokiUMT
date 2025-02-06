@@ -91,6 +91,6 @@ mv /workspaces/jpp1/platforms/android/app/build/outputs/apk/debug/app-debug.apk 
 
 echo "NIH APPSNYA DH JADI"
 
-cordova platfroam add android
+cordova platform add android
 
 cordova build android --release -- --keystore=./CUSTEM.keystore --storePassword=@CUSTEM211 --alias=Dcustem --password=@CUSTEM211 --packageType=bundle
